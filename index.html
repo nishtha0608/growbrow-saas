@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growbrow.ai — AI Growth Intelligence Platform</title>
+    <meta name="description" content="The AI brain behind every growth decision. Turn raw data into revenue with predictive analytics and automated growth strategies.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📊</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        /* ═══════════════════════════════════════════════════
+           THEME TOKENS
+        ═══════════════════════════════════════════════════ */
+        .theme-dark {
+            --bg1:#07090f; --bg2:#0d1117; --bg3:#131929;
+            --card:rgba(255,255,255,0.038); --cardh:rgba(255,255,255,0.068);
+            --t1:#eef2ff; --t2:#8892a8; --t3:#4a5568;
+            --bd:rgba(255,255,255,0.07); --bda:rgba(139,92,246,0.55);
+            --v:#8b5cf6; --p:#ec4899; --c:#22d3ee; --g:#10b981;
+            --glow:0 0 55px rgba(139,92,246,0.28);
+            --glows:0 0 22px rgba(139,92,246,0.18);
+            --nav:rgba(7,9,15,0.88);
+            --sh:rgba(0,0,0,0.5);
+            --m1:rgba(139,92,246,0.07); --m2:rgba(236,72,153,0.05); --m3:rgba(34,211,238,0.05);
+        }
+        .theme-light {
+            --bg1:#fafbff; --bg2:#f0f4ff; --bg3:#e8edff;
+            --card:#ffffff; --cardh:#f4f7ff;
+            --t1:#0f172a; --t2:#475569; --t3:#94a3b8;
+            --bd:rgba(0,0,0,0.07); --bda:rgba(109,40,217,0.4);
+            --v:#7c3aed; --p:#db2777; --c:#0891b2; --g:#059669;
+            --glow:0 0 55px rgba(124,58,237,0.14);
+            --glows:0 0 22px rgba(124,58,237,0.09);
+            --nav:rgba(250,251,255,0.9);
+            --sh:rgba(0,0,0,0.1);
+            --m1:rgba(124,58,237,0.05); --m2:rgba(219,39,119,0.035); --m3:rgba(8,145,178,0.04);
+        }
+
+        /* ═══════════════════════════════════════════════════
+           BASE
+        ═══════════════════════════════════════════════════ */
+        *,*::before,*::after { font-family:'Inter',sans-serif; box-sizing:border-box; margin:0; padding:0; }
+        html { scroll-behavior: smooth; }
+        body { background:var(--bg1); color:var(--t1); overflow-x:hidden; transition:background .5s,color .5s; }
+        ::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--bg1)} ::-webkit-scrollbar-thumb{background:var(--bda);border-radius:3px} ::-webkit-scrollbar-thumb:hover{background:var(--v)}
+
+        /* ═══════════════════════════════════════════════════
+           CURSOR GLOW
+        ═══════════════════════════════════════════════════ */
+        #cg { position:fixed; pointer-events:none; z-index:0; width:520px; height:520px; border-radius:50%; transform:translate(-50%,-50%); background:radial-gradient(circle,var(--m1) 0%,transparent 65%); transition:left .1s linear,top .1s linear; }
+
+        /* ═══════════════════════════════════════════════════
+           MESH ORBS
+        ═══════════════════════════════════════════════════ */
+        .mesh-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+        .orb{position:absolute;border-radius:50%;filter:blur(90px);animation:drift 24s ease-in-out infinite;}
+        .o1{width:700px;height:700px;background:radial-gradient(circle,var(--m1),transparent);top:-200px;left:-100px;animation-duration:28s;}
+        .o2{width:550px;height:550px;background:radial-gradient(circle,var(--m2),transparent);top:25%;right:-150px;animation-duration:34s;animation-delay:-12s;}
+        .o3{width:450px;height:450px;background:radial-gradient(circle,var(--m3),transparent);bottom:5%;left:25%;animation-duration:22s;animation-delay:-6s;}
+        @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-40px) scale(1.06)}66%{transform:translate(-40px,55px) scale(0.94)}}
+
+        /* ═══════════════════════════════════════════════════
+           GRID BG
+        ═══════════════════════════════════════════════════ */
+        .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--m1) 1px,transparent 1px),linear-gradient(90deg,var(--m1) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%);}
+
+        /* ═══════════════════════════════════════════════════
+           NAV
+        ═══════════════════════════════════════════════════ */
+        .nav-s{background:var(--nav)!important;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--bd);}
+        .nav-link{color:var(--t2);font-weight:500;font-size:14px;transition:color .2s;position:relative;padding-bottom:2px;}
+        .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--v),var(--p));transition:width .3s;border-radius:2px;}
+        .nav-link:hover{color:var(--t1);}
+        .nav-link:hover::after{width:100%;}
+
+        /* ═══════════════════════════════════════════════════
+           TOGGLE
+        ═══════════════════════════════════════════════════ */
+        .tog{position:relative;width:58px;height:30px;background:var(--card);border:1px solid var(--bd);border-radius:50px;cursor:pointer;transition:border-color .3s,box-shadow .3s;}
+        .tog:hover{border-color:var(--bda);box-shadow:var(--glows);}
+        .tog-icons{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 8px;font-size:11px;line-height:1;pointer-events:none;}
+        .tog-thumb{position:absolute;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--v),var(--p));top:3px;transition:transform .4s cubic-bezier(.4,0,.2,1),box-shadow .3s;box-shadow:0 2px 10px rgba(0,0,0,.25);}
+        .theme-dark  .tog-thumb{transform:translateX(3px);}
+        .theme-light .tog-thumb{transform:translateX(30px);}
+
+        /* ═══════════════════════════════════════════════════
+           BUTTONS
+        ═══════════════════════════════════════════════════ */
+        .btn-p{background:linear-gradient(135deg,var(--v),var(--p));color:#fff;border:none;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;cursor:pointer;}
+        .btn-p::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--p),var(--v));opacity:0;transition:opacity .3s;}
+        .btn-p:hover::after{opacity:1;} .btn-p:hover{transform:translateY(-2px);box-shadow:var(--glow);}
+        .btn-p span{position:relative;z-index:1;}
+        .btn-g{background:var(--card);color:var(--t1);border:1px solid var(--bd);transition:border-color .25s,background .25s,transform .25s;cursor:pointer;}
+        .btn-g:hover{border-color:var(--bda);background:var(--cardh);transform:translateY(-2px);}
+
+        /* ═══════════════════════════════════════════════════
+           CARDS
+        ═══════════════════════════════════════════════════ */
+        .card{background:var(--card);border:1px solid var(--bd);transition:background .3s,border-color .3s,transform .35s,box-shadow .35s;}
+        .card:hover{background:var(--cardh);border-color:var(--bda);transform:translateY(-6px);box-shadow:var(--glow),0 24px 60px var(--sh);}
+
+        /* ═══════════════════════════════════════════════════
+           GRADIENTS
+        ═══════════════════════════════════════════════════ */
+        .gt{background:linear-gradient(135deg,var(--v),var(--p));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        .gtc{background:linear-gradient(135deg,var(--v),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+        /* ═══════════════════════════════════════════════════
+           BADGES
+        ═══════════════════════════════════════════════════ */
+        .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(139,92,246,.1);color:var(--v);border:1px solid rgba(139,92,246,.22);}
+        .theme-light .badge{background:rgba(124,58,237,.07);}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:var(--card);border:1px solid var(--bda);border-radius:50px;font-size:13px;font-weight:600;color:var(--v);margin-bottom:24px;backdrop-filter:blur(10px);}
+        .pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--v);animation:pd 2s ease-in-out infinite;}
+        @keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+
+        /* ═══════════════════════════════════════════════════
+           METRIC CHIPS
+        ═══════════════════════════════════════════════════ */
+        .mchip{padding:14px 20px;background:var(--card);border:1px solid var(--bd);border-radius:14px;transition:border-color .3s,box-shadow .3s;}
+        .mchip:hover{border-color:var(--bda);box-shadow:var(--glows);}
+
+        /* ═══════════════════════════════════════════════════
+           MARQUEE
+        ═══════════════════════════════════════════════════ */
+        .marquee-wrap{overflow:hidden;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);background:var(--bg2);padding:18px 0;}
+        .marquee-track{display:flex;gap:60px;animation:marquee 25s linear infinite;width:max-content;}
+        .marquee-track:hover{animation-play-state:paused;}
+        @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+        .marquee-item{font-size:15px;font-weight:700;color:var(--t3);white-space:nowrap;letter-spacing:-.01em;transition:color .2s;}
+        .marquee-item:hover{color:var(--v);}
+
+        /* ═══════════════════════════════════════════════════
+           HOW IT WORKS
+        ═══════════════════════════════════════════════════ */
+        .step-connector{position:absolute;top:50%;left:100%;width:100%;height:2px;background:linear-gradient(90deg,var(--bda),transparent);transform:translateY(-50%);z-index:0;}
+        .step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--v),var(--p));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;margin:0 auto 16px;box-shadow:var(--glows);}
+
+        /* ═══════════════════════════════════════════════════
+           BENTO
+        ═══════════════════════════════════════════════════ */
+        .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;}
+        .b8{grid-column:span 8;} .b4{grid-column:span 4;} .b12{grid-column:span 12;}
+        @media(max-width:768px){.b8,.b4,.b12{grid-column:span 12;}}
+        .feat-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+
+        /* ═══════════════════════════════════════════════════
+           IMPACT NUMBERS
+        ═══════════════════════════════════════════════════ */
+        .impact-card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:32px 24px;text-align:center;transition:all .35s;}
+        .impact-card:hover{border-color:var(--bda);box-shadow:var(--glow);transform:translateY(-6px);}
+
+        /* ═══════════════════════════════════════════════════
+           TESTIMONIALS
+        ═══════════════════════════════════════════════════ */
+        .tcard{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:28px;transition:all .35s;}
+        .tcard:hover{border-color:var(--bda);box-shadow:var(--glow);transform:translateY(-5px);}
+        .avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;flex-shrink:0;}
+
+        /* ═══════════════════════════════════════════════════
+           TABS
+        ═══════════════════════════════════════════════════ */
+        .tab-bar{background:var(--bg2);border-bottom:1px solid var(--bd);padding:12px 16px;display:flex;gap:8px;}
+        .tab-btn{display:flex;align-items:center;gap:8px;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid transparent;transition:all .2s;background:transparent;color:var(--t2);}
+        .tab-btn:hover{background:var(--cardh);color:var(--t1);}
+        .tab-btn.on{background:var(--card);color:var(--v);border-color:var(--bda);box-shadow:var(--glows);}
+
+        /* ═══════════════════════════════════════════════════
+           PROGRESS + CHART
+        ═══════════════════════════════════════════════════ */
+        .pt{height:6px;background:var(--bd);border-radius:3px;overflow:hidden;}
+        .pf{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--v),var(--p));}
+        .cbar{background:linear-gradient(to top,var(--v),var(--c));border-radius:4px 4px 0 0;opacity:.75;transition:opacity .2s;}
+        .cbar:hover{opacity:1;}
+
+        /* ═══════════════════════════════════════════════════
+           DASHBOARD CARDS
+        ═══════════════════════════════════════════════════ */
+        .dm{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;transition:border-color .3s,box-shadow .3s;}
+        .dm:hover{border-color:var(--bda);box-shadow:var(--glows);}
+        .ai-rec{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(34,211,238,.05));border:1px solid rgba(139,92,246,.2);border-radius:16px;}
+        .theme-light .ai-rec{background:linear-gradient(135deg,rgba(124,58,237,.05),rgba(8,145,178,.03));}
+        .alert-w{background:rgba(234,179,8,.08);border-left:4px solid #eab308;border-radius:8px;}
+        .theme-light .alert-w{background:rgba(234,179,8,.06);}
+
+        /* ═══════════════════════════════════════════════════
+           PRICING POPULAR
+        ═══════════════════════════════════════════════════ */
+        .pp{position:relative;}
+        .pp::before{content:'';position:absolute;inset:-2px;border-radius:24px;background:linear-gradient(135deg,var(--v),var(--p),var(--c),var(--v));background-size:300% 300%;z-index:-1;animation:gspin 5s linear infinite;}
+        @keyframes gspin{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+        /* ═══════════════════════════════════════════════════
+           AURORA CTA
+        ═══════════════════════════════════════════════════ */
+        .aurora-wrap{position:relative;overflow:hidden;background:var(--bg2);}
+        .aurora-inner{position:absolute;inset:0;pointer-events:none;}
+        .aw{position:absolute;border-radius:50%;filter:blur(70px);animation:af 9s ease-in-out infinite;}
+        .aw1{width:900px;height:350px;background:linear-gradient(to right,rgba(139,92,246,.18),rgba(236,72,153,.12));top:-100px;left:-200px;}
+        .aw2{width:700px;height:280px;background:linear-gradient(to right,rgba(34,211,238,.1),rgba(139,92,246,.1));bottom:-80px;right:-100px;animation-delay:-4.5s;}
+        .aw3{width:500px;height:500px;background:radial-gradient(circle,rgba(236,72,153,.09),transparent);top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:-2s;}
+        @keyframes af{0%,100%{transform:translate(0,0) rotate(0deg) scale(1)}33%{transform:translate(50px,-25px) rotate(6deg) scale(1.06)}66%{transform:translate(-35px,35px) rotate(-4deg) scale(.96)}}
+
+        /* ═══════════════════════════════════════════════════
+           REVEAL / FLOAT / SLIDE
+        ═══════════════════════════════════════════════════ */
+        .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
+        .reveal.vis{opacity:1;transform:translateY(0);}
+        .rd1{transition-delay:.08s;} .rd2{transition-delay:.16s;} .rd3{transition-delay:.24s;} .rd4{transition-delay:.32s;}
+        .float{animation:fl 6s ease-in-out infinite;}
+        @keyframes fl{0%,100%{transform:translateY(0) rotate(0deg)}33%{transform:translateY(-14px) rotate(.4deg)}66%{transform:translateY(-7px) rotate(-.4deg)}}
+        .slide-in{animation:si .85s cubic-bezier(.4,0,.2,1) both;}
+        @keyframes si{from{opacity:0;transform:translateY(44px)}to{opacity:1;transform:translateY(0)}}
+
+        /* ═══════════════════════════════════════════════════
+           FOOTER / MODAL / MISC
+        ═══════════════════════════════════════════════════ */
+        .footer-bg{background:var(--bg3);border-top:1px solid var(--bd);}
+        .m-input{background:var(--bg1);border:1px solid var(--bd);color:var(--t1);border-radius:12px;padding:12px 16px;width:100%;font-size:14px;transition:border-color .2s,box-shadow .2s;}
+        .m-input:focus{outline:none;border-color:var(--bda);box-shadow:0 0 0 3px rgba(139,92,246,.1);}
+        .m-input::placeholder{color:var(--t3);}
+        .s1{background:var(--bg1);} .s2{background:var(--bg2);}
+    </style>
+</head>
+<body>
+<div id="cg"></div>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+/* ──────────────────────────────────────────────────────────────
+   ANIMATED COUNTER HOOK
+────────────────────────────────────────────────────────────── */
+function useCounter(target, duration = 2000, started = false) {
+    const [val, setVal] = useState(0);
+    useEffect(() => {
+        if (!started) return;
+        let start = null;
+        const step = (ts) => {
+            if (!start) start = ts;
+            const prog = Math.min((ts - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - prog, 3);
+            setVal(Math.floor(ease * target));
+            if (prog < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    }, [started, target, duration]);
+    return val;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   APP
+────────────────────────────────────────────────────────────── */
+function App() {
+    const [theme, setTheme]   = useState('dark');
+    const [scrolled, set_s]   = useState(false);
+    const [tab, setTab]       = useState('dashboard');
+    const [demo, setDemo]     = useState(false);
+
+    useEffect(() => {
+        document.body.className = `theme-${theme}`;
+        document.documentElement.style.colorScheme = theme;
+    }, [theme]);
+
+    useEffect(() => {
+        const h = () => set_s(window.scrollY > 50);
+        window.addEventListener('scroll', h);
+        return () => window.removeEventListener('scroll', h);
+    }, []);
+
+    useEffect(() => {
+        const el = document.getElementById('cg');
+        const h  = (e) => { el.style.left = e.clientX+'px'; el.style.top = e.clientY+'px'; };
+        window.addEventListener('mousemove', h);
+        return () => window.removeEventListener('mousemove', h);
+    }, []);
+
+    useEffect(() => { lucide.createIcons(); }, [tab, demo, theme]);
+
+    useEffect(() => {
+        const obs = new IntersectionObserver(
+            (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }),
+            { threshold: 0.08 }
+        );
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        return () => obs.disconnect();
+    }, []);
+
+    return (
+        <div className={`theme-${theme} min-h-screen`} style={{ background:'var(--bg1)', color:'var(--t1)' }}>
+            <div className="mesh-bg"><div className="orb o1"/><div className="orb o2"/><div className="orb o3"/></div>
+
+            {/* NAV */}
+            <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'nav-s' : ''}`}
+                 style={{ background: scrolled ? undefined : 'transparent' }}>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-between items-center h-16">
+                        <div className="flex items-center gap-2">
+                            <span className="text-3xl">📊</span>
+                            <span className="text-xl font-black gt">Growbrow.ai</span>
+                        </div>
+                        <div className="hidden md:flex gap-8">
+                            {['Features','How It Works','Demo','Pricing'].map(n => (
+                                <a key={n} href={`#${n.toLowerCase().replace(/ /g,'-')}`} className="nav-link">{n}</a>
+                            ))}
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <button className="tog" onClick={() => setTheme(t => t==='dark'?'light':'dark')}>
+                                <div className="tog-icons"><span>☀️</span><span>🌙</span></div>
+                                <div className="tog-thumb"/>
+                            </button>
+                            <button onClick={() => setDemo(true)} className="btn-p px-5 py-2 rounded-full font-semibold text-sm">
+                                <span>Try Free Demo</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            {/* HERO */}
+            <HeroSection onDemo={() => setDemo(true)} />
+
+            {/* MARQUEE */}
+            <MarqueeBar />
+
+            {/* HOW IT WORKS */}
+            <HowItWorks />
+
+            {/* FEATURES */}
+            <section id="features" className="py-24 px-4 s2" style={{ position:'relative', zIndex:1 }}>
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16 reveal">
+                        <div className="badge mb-4">Features</div>
+                        <h2 className="text-4xl font-black mb-3 gt">Built for Scale</h2>
+                        <p className="text-xl" style={{ color:'var(--t2)' }}>Everything you need to accelerate growth</p>
+                    </div>
+                    <BentoFeatures />
+                </div>
+            </section>
+
+            {/* IMPACT NUMBERS */}
+            <ImpactNumbers />
+
+            {/* DEMO */}
+            <section id="demo" className="py-24 px-4 s2" style={{ position:'relative', zIndex:1 }}>
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-12 reveal">
+                        <div className="badge mb-4">Live Demo</div>
+                        <h2 className="text-4xl font-black mb-3 gt">See It In Action</h2>
+                        <p className="text-xl" style={{ color:'var(--t2)' }}>Explore our interactive AI dashboard</p>
+                    </div>
+                    <div className="reveal rd1" style={{ borderRadius:20, overflow:'hidden', border:'1px solid var(--bd)' }}>
+                        <InteractiveDashboard activeTab={tab} setActiveTab={setTab} />
+                    </div>
+                </div>
+            </section>
+
+            {/* TESTIMONIALS */}
+            <Testimonials />
+
+            {/* PRICING */}
+            <section id="pricing" className="py-24 px-4 s1" style={{ position:'relative', zIndex:1 }}>
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16 reveal">
+                        <div className="badge mb-4">Pricing</div>
+                        <h2 className="text-4xl font-black mb-3 gt">Simple, Transparent Pricing</h2>
+                        <p className="text-xl" style={{ color:'var(--t2)' }}>Start free. Scale as you grow.</p>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <PricingCard name="Starter" price="$49" period="month" features={['Up to 10K data points','Basic AI analytics','5 team members','Email support','Mobile app access']} />
+                        <PricingCard name="Professional" price="$149" period="month" popular features={['Up to 100K data points','Advanced AI predictions','Unlimited team members','Priority support','Custom integrations','API access']} />
+                        <PricingCard name="Enterprise" price="Custom" period="" features={['Unlimited data points','Custom AI models','Dedicated account manager','24/7 phone support','On-premise deployment','SLA guarantee']} />
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA */}
+            <section id="contact" className="aurora-wrap py-28 px-4" style={{ position:'relative', zIndex:1 }}>
+                <div className="aurora-inner"><div className="aw aw1"/><div className="aw aw2"/><div className="aw aw3"/></div>
+                <div className="max-w-4xl mx-auto text-center relative reveal" style={{ zIndex:2 }}>
+                    <h2 className="font-black mb-5" style={{ fontSize:'clamp(2rem,4vw,3.25rem)', color:'var(--t1)' }}>
+                        Ready to <span className="gt">10x Your Growth?</span>
+                    </h2>
+                    <p className="text-xl mb-10" style={{ color:'var(--t2)' }}>Join 10,000+ businesses already growing smarter with AI</p>
+                    <button onClick={() => setDemo(true)} className="btn-p px-14 py-5 rounded-2xl font-black text-xl">
+                        <span>Start Free — No Credit Card</span>
+                    </button>
+                </div>
+            </section>
+
+            {/* FOOTER */}
+            <footer className="footer-bg py-16 px-4" style={{ position:'relative', zIndex:1 }}>
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid md:grid-cols-4 gap-8 mb-10">
+                        <div>
+                            <div className="flex items-center gap-2 mb-4">
+                                <span className="text-3xl">📊</span>
+                                <span className="text-lg font-black" style={{ color:'var(--t1)' }}>Growbrow.ai</span>
+                            </div>
+                            <p style={{ color:'var(--t2)', fontSize:14, lineHeight:1.65 }}>The AI brain behind every growth decision.</p>
+                        </div>
+                        {[{title:'Product',links:['Features','Pricing','Demo','Changelog']},{title:'Company',links:['About','Careers','Blog','Press']},{title:'Legal',links:['Privacy Policy','Terms of Service','Security','Contact']}].map(col => (
+                            <div key={col.title}>
+                                <h3 className="font-bold mb-4 text-xs uppercase tracking-widest" style={{ color:'var(--t1)' }}>{col.title}</h3>
+                                <ul className="space-y-2">
+                                    {col.links.map(link => (
+                                        <li key={link}><a href="#" className="text-sm" style={{ color:'var(--t2)', transition:'color .2s' }}
+                                               onMouseEnter={e=>e.target.style.color='var(--v)'}
+                                               onMouseLeave={e=>e.target.style.color='var(--t2)'}>{link}</a></li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="pt-8 text-center" style={{ borderTop:'1px solid var(--bd)' }}>
+                        <p className="text-sm" style={{ color:'var(--t3)' }}>© 2024 Growbrow.ai. All rights reserved. Built with ❤️ and AI.</p>
+                    </div>
+                </div>
+            </footer>
+
+            {demo && <DemoModal onClose={() => setDemo(false)} />}
+        </div>
+    );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   HERO SECTION (with typewriter)
+────────────────────────────────────────────────────────────── */
+function HeroSection({ onDemo }) {
+    const words = ['Revenue','Customers','Retention','Market Share'];
+    const [wi, setWi] = useState(0);
+    const [fade, setFade] = useState(true);
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            setFade(false);
+            setTimeout(() => { setWi(w => (w+1)%words.length); setFade(true); }, 400);
+        }, 2200);
+        return () => clearInterval(id);
+    }, []);
+
+    return (
+        <section className="s1 relative" style={{ minHeight:'100vh', display:'flex', alignItems:'center', paddingTop:80, paddingBottom:96, paddingLeft:16, paddingRight:16 }}>
+            <div className="grid-bg"/>
+            <div className="max-w-7xl mx-auto w-full relative" style={{ zIndex:1 }}>
+                <div className="grid md:grid-cols-2 gap-16 items-center">
+                    <div className="slide-in">
+                        <div className="hero-badge">
+                            <div className="pulse-dot"/>
+                            Now with GPT-4o powered insights
+                        </div>
+                        <h1 className="font-black mb-4 leading-tight" style={{ fontSize:'clamp(2.5rem,5vw,3.75rem)', color:'var(--t1)' }}>
+                            The AI Brain Behind<br/>Every Growth Decision
+                        </h1>
+                        <div className="mb-6" style={{ fontSize:'clamp(1.1rem,2vw,1.3rem)', color:'var(--t2)', lineHeight:1.6 }}>
+                            Automate your{' '}
+                            <span className="gt font-black" style={{ transition:'opacity .4s', opacity: fade ? 1 : 0, display:'inline-block', minWidth:'130px' }}>
+                                {words[wi]}
+                            </span>
+                            {' '}growth with AI that predicts, prescribes, and acts.
+                        </div>
+                        <div className="flex flex-wrap gap-3 mb-12">
+                            <button onClick={onDemo} className="btn-p px-8 py-4 rounded-2xl font-bold text-base"><span>Start Free Trial</span></button>
+                            <button className="btn-g px-8 py-4 rounded-2xl font-bold text-base">Watch Demo →</button>
+                        </div>
+                        <div className="flex flex-wrap gap-4">
+                            {[['10K+','Active Users'],['500+','Companies'],['98%','Satisfaction'],['$2.4B','Revenue Tracked']].map(([n,l]) => (
+                                <div key={l} className="mchip">
+                                    <div className="text-xl font-black gt">{n}</div>
+                                    <div className="text-xs mt-0.5" style={{ color:'var(--t3)' }}>{l}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="float relative" style={{ zIndex:1 }}>
+                        <div className="rounded-2xl overflow-hidden" style={{
+                            background:'var(--card)', border:'1px solid var(--bd)',
+                            boxShadow:'var(--glow), 0 40px 80px var(--sh)'
+                        }}>
+                            <DashboardPreview/>
+                        </div>
+                        {/* Floating mini cards */}
+                        <div style={{ position:'absolute', top:-20, right:-20, background:'var(--card)', border:'1px solid var(--bd)', borderRadius:14, padding:'10px 16px', backdropFilter:'blur(12px)', animation:'fl 4s ease-in-out infinite', animationDelay:'.5s', boxShadow:'var(--glows)' }}>
+                            <div className="text-xs font-bold" style={{ color:'var(--t3)' }}>AI Score</div>
+                            <div className="font-black gtc" style={{ fontSize:22 }}>9.4/10</div>
+                        </div>
+                        <div style={{ position:'absolute', bottom:-20, left:-20, background:'var(--card)', border:'1px solid var(--bd)', borderRadius:14, padding:'10px 16px', backdropFilter:'blur(12px)', animation:'fl 5s ease-in-out infinite', animationDelay:'1s', boxShadow:'var(--glows)' }}>
+                            <div className="text-xs font-bold" style={{ color:'var(--t3)' }}>MoM Growth</div>
+                            <div className="font-black" style={{ fontSize:22, color:'#10b981' }}>+34.2%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   MARQUEE BAR
+────────────────────────────────────────────────────────────── */
+function MarqueeBar() {
+    const companies = ['Stripe','Notion','Figma','Linear','Vercel','Shopify','Slack','Airbnb','Dropbox','Intercom','HubSpot','Twilio','Segment','Mixpanel','Amplitude'];
+    const doubled = [...companies, ...companies];
+    return (
+        <div className="marquee-wrap relative" style={{ zIndex:1 }}>
+            <div className="max-w-7xl mx-auto px-4 mb-2 text-center">
+                <p className="text-xs font-semibold uppercase tracking-widest" style={{ color:'var(--t3)' }}>
+                    Trusted by teams at world-class companies
+                </p>
+            </div>
+            <div className="marquee-track">
+                {doubled.map((c, i) => (
+                    <span key={i} className="marquee-item">
+                        <span style={{ color:'var(--bda)', marginRight:12 }}>◆</span>{c}
+                    </span>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   HOW IT WORKS
+────────────────────────────────────────────────────────────── */
+function HowItWorks() {
+    const steps = [
+        { num:'01', icon:'database', title:'Connect Your Data', desc:'Plug in your CRM, marketing tools, and data sources in minutes. 100+ native integrations. No engineering required.', color:'#8b5cf6' },
+        { num:'02', icon:'brain',    title:'AI Analyzes Patterns', desc:'Our neural engine processes millions of signals to identify what is driving (and killing) your growth right now.', color:'#ec4899' },
+        { num:'03', icon:'zap',      title:'Growth Accelerates', desc:'Get precise, automated recommendations and watch your KPIs climb. The AI acts — you scale.', color:'#22d3ee' },
+    ];
+    return (
+        <section id="how-it-works" className="py-24 px-4 s1" style={{ position:'relative', zIndex:1 }}>
+            <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-16 reveal">
+                    <div className="badge mb-4">How It Works</div>
+                    <h2 className="text-4xl font-black mb-3 gt">From Data to Growth in 3 Steps</h2>
+                    <p className="text-xl" style={{ color:'var(--t2)' }}>No PhD required. Just connect and grow.</p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-8 relative">
+                    {/* connector lines */}
+                    <div className="hidden md:block absolute top-12 left-1/3 right-1/3 h-px" style={{ background:'linear-gradient(90deg,var(--bda),var(--bda))', opacity:.35 }}/>
+                    {steps.map((s, i) => (
+                        <div key={i} className={`reveal rd${i+1} card rounded-2xl p-8 text-center`}>
+                            <div style={{ width:56, height:56, borderRadius:'50%', background:`linear-gradient(135deg,${s.color},${s.color}88)`, display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 16px', boxShadow:`0 0 30px ${s.color}44` }}>
+                                <i data-lucide={s.icon} style={{ width:26, height:26, color:'#fff' }}></i>
+                            </div>
+                            <div className="text-xs font-black mb-2 tracking-widest" style={{ color:s.color }}>{s.num}</div>
+                            <h3 className="text-xl font-black mb-3" style={{ color:'var(--t1)' }}>{s.title}</h3>
+                            <p className="text-sm leading-relaxed" style={{ color:'var(--t2)' }}>{s.desc}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BENTO FEATURES
+────────────────────────────────────────────────────────────── */
+function BentoFeatures() {
+    const features = [
+        { icon:'brain',       title:'AI-Powered Analytics',   desc:'Advanced ML algorithms analyze your data to uncover hidden growth opportunities and patterns across all channels.', accent:'#8b5cf6', span:'b8', hero:'95% Accuracy' },
+        { icon:'trending-up', title:'Predictive Forecasting', desc:'Forecast revenue, customer behavior, and market trends with industry-leading precision.', accent:'#ec4899', span:'b4' },
+        { icon:'zap',         title:'Automated Insights',     desc:'Real-time alerts and recommendations without any manual analysis.', accent:'#22d3ee', span:'b4' },
+        { icon:'users',       title:'Customer Intelligence',  desc:'Deep customer segmentation and personalized growth strategies for every cohort.', accent:'#f59e0b', span:'b4' },
+        { icon:'bar-chart-2', title:'Performance Metrics',    desc:'Track KPIs, conversion rates, and ROI in beautiful real-time dashboards.', accent:'#10b981', span:'b4' },
+        { icon:'shield-check',title:'Enterprise Security',    desc:'Bank-level encryption and GDPR-compliant data protection across all your pipelines.', accent:'#6366f1', span:'b12', badges:['SOC 2','GDPR','ISO 27001','HIPAA'] },
+    ];
+    return (
+        <div className="bento">
+            {features.map((f, i) => (
+                <div key={i} className={`card rounded-2xl p-8 reveal rd${Math.min(i+1,4)} ${f.span}`} style={{ position:'relative', overflow:'hidden' }}>
+                    <div style={{ position:'absolute', top:0, left:0, right:0, height:3, background:`linear-gradient(90deg,${f.accent},transparent)`, borderRadius:'14px 14px 0 0' }}/>
+                    <div className="feat-icon" style={{ background:`${f.accent}18` }}>
+                        <i data-lucide={f.icon} style={{ color:f.accent, width:24, height:24 }}></i>
+                    </div>
+                    {f.hero && <div className="text-5xl font-black gtc mb-3">{f.hero}</div>}
+                    <h3 className="text-lg font-bold mb-2" style={{ color:'var(--t1)' }}>{f.title}</h3>
+                    <p className="text-sm leading-relaxed" style={{ color:'var(--t2)' }}>{f.desc}</p>
+                    {f.badges && (
+                        <div className="mt-5 flex flex-wrap gap-2">
+                            {f.badges.map(b => <span key={b} className="badge">{b}</span>)}
+                        </div>
+                    )}
+                </div>
+            ))}
+        </div>
+    );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   IMPACT NUMBERS
+────────────────────────────────────────────────────────────── */
+function ImpactNumbers() {
+    const ref = useRef(null);
+    const [started, setStarted] = useState(false);
+    useEffect(() => {
+        const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStarted(true); }, { threshold: .3 });
+        if (ref.current) obs.observe(ref.current);
+        return () => obs.disconnect();
+    }, []);
+    const r1 = useCounter(2400, 2000, started);
+    const r2 = useCounter(10000, 2000, started);
+    const r3 = useCounter(340, 1800, started);
+    const r4 = useCounter(95, 1600, started);
+    const stats = [
+        { val:r1,  suffix:'M', prefix:'$', label:'Revenue Generated', sub:'across all clients combined', color:'#10b981' },
+        { val:r2,  suffix:'+', prefix:'',  label:'Businesses Growing', sub:'and counting every day', color:'#8b5cf6' },
+        { val:r3,  suffix:'%', prefix:'',  label:'Average ROI',        sub:'within the first 90 days', color:'#ec4899' },
+        { val:r4,  suffix:'%', prefix:'',  label:'Prediction Accuracy',sub:'on revenue forecasts', color:'#22d3ee' },
+    ];
+    return (
+        <section className="py-24 px-4 s1 relative" style={{ zIndex:1 }} ref={ref}>
+            <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-16 reveal">
+                    <div className="badge mb-4">Impact</div>
+                    <h2 className="text-4xl font-black mb-3 gt">Numbers That Speak</h2>
+                    <p className="text-xl" style={{ color:'var(--t2)' }}>Real results from real businesses</p>
+                </div>
+                <div className="grid md:grid-cols-4 gap-6">
+                    {stats.map((s,i) => (
+                        <div key={i} className={`impact-card reveal rd${i+1}`}>
+                            <div className="text-5xl font-black mb-1" style={{ color:s.color }}>
+                                {s.prefix}{s.val.toLocaleString()}{s.suffix}
+                            </div>
+                            <div className="font-bold mb-1" style={{ color:'var(--t1)', fontSize:16 }}>{s.label}</div>
+                            <div className="text-xs" style={{ color:'var(--t3)' }}>{s.sub}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   DASHBOARD PREVIEW
+────────────────────────────────────────────────────────────── */
+function DashboardPreview() {
+    const [m, setM] = useState({ revenue:73420, users:2847, conv:4.82 });
+    useEffect(() => {
+        const id = setInterval(() => setM({
+            revenue: Math.floor(Math.random()*40000)+60000,
+            users:   Math.floor(Math.random()*2000)+2000,
+            conv:    +(Math.random()*4+3).toFixed(2)
+        }), 2000);
+        return () => clearInterval(id);
+    }, []);
+    const cards = [
+        { label:'Revenue', val:`$${m.revenue.toLocaleString()}`, from:'#059669', to:'#10b981' },
+        { label:'Users',   val:m.users.toLocaleString(),          from:'#2563eb', to:'#3b82f6' },
+        { label:'Conv. Rate',val:`${m.conv}%`,                    from:'#7c3aed', to:'#8b5cf6' }
+    ];
+    return (
+        <div className="p-6 space-y-4">
+            <div className="flex items-center justify-between">
+                <h3 className="font-bold text-sm" style={{ color:'var(--t1)' }}>Live Analytics</h3>
+                <div className="flex items-center gap-1.5">
+                    <div style={{ width:7, height:7, borderRadius:'50%', background:'#10b981', animation:'pd 1.5s infinite' }}/>
+                    <span className="text-xs" style={{ color:'var(--t3)' }}>Live</span>
+                </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+                {cards.map(c => (
+                    <div key={c.label} style={{ background:`linear-gradient(135deg,${c.from},${c.to})`, borderRadius:12, padding:'12px' }}>
+                        <div style={{ fontSize:10, color:'rgba(255,255,255,.75)', marginBottom:4 }}>{c.label}</div>
+                        <div style={{ fontSize:17, fontWeight:800, color:'#fff', letterSpacing:'-.02em' }}>{c.val}</div>
+                    </div>
+                ))}
+            </div>
+            <div style={{ background:'var(--bg2)', borderRadius:12, padding:14 }}>
+                <div className="flex justify-between items-center mb-2">
+                    <span style={{ fontSize:12, fontWeight:600, color:'var(--t2)' }}>Growth Trend</span>
+                    <span style={{ fontSize:12, fontWeight:700, color:'#10b981' }}>↑ 24.5%</span>
+                </div>
+                <div className="pt"><div className="pf" style={{ width:'76%' }}/></div>
+            </div>
+            <div style={{ background:'var(--bg2)', borderRadius:12, padding:14 }}>
+                <div style={{ fontSize:11, fontWeight:600, color:'var(--t3)', marginBottom:8 }}>7-day Revenue</div>
+                <div className="flex items-end gap-1" style={{ height:48 }}>
+                    {[55,68,60,80,72,92,84].map((h,i) => (
+                        <div key={i} className="cbar flex-1" style={{ height:`${h}%` }}/>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   INTERACTIVE DASHBOARD
+────────────────────────────────────────────────────────────── */
+function InteractiveDashboard({ activeTab, setActiveTab }) {
+    const tabs = [
+        { id:'dashboard',   label:'Overview',       icon:'layout-dashboard' },
+        { id:'analytics',   label:'Analytics',      icon:'bar-chart-2' },
+        { id:'predictions', label:'AI Predictions', icon:'brain' }
+    ];
+    return (
+        <div style={{ background:'var(--bg1)' }}>
+            <div className="tab-bar">
+                {tabs.map(t => (
+                    <button key={t.id} onClick={() => setActiveTab(t.id)} className={`tab-btn${activeTab===t.id?' on':''}`}>
+                        <i data-lucide={t.icon} style={{ width:15, height:15 }}></i>
+                        <span>{t.label}</span>
+                    </button>
+                ))}
+            </div>
+            <div className="p-8">
+                {activeTab==='dashboard'   && <OverviewTab/>}
+                {activeTab==='analytics'   && <AnalyticsTab/>}
+                {activeTab==='predictions' && <PredictionsTab/>}
+            </div>
+        </div>
+    );
+}
+
+function OverviewTab() {
+    return (
+        <div className="space-y-6">
+            <h3 className="text-2xl font-black" style={{ color:'var(--t1)' }}>Business Overview</h3>
+            <div className="grid md:grid-cols-4 gap-4">
+                {[{title:'Total Revenue',value:'$284,500',change:'+12.5%',pos:true},{title:'Active Users',value:'8,234',change:'+8.2%',pos:true},{title:'Conversion Rate',value:'4.8%',change:'-1.2%',pos:false},{title:'Avg. Order Value',value:'$127',change:'+5.8%',pos:true}].map(m => (
+                    <div key={m.title} className="dm">
+                        <div className="text-xs font-medium mb-1" style={{ color:'var(--t3)' }}>{m.title}</div>
+                        <div className="text-2xl font-black mb-1" style={{ color:'var(--t1)' }}>{m.value}</div>
+                        <div className="text-sm font-semibold" style={{ color:m.pos?'#10b981':'#ef4444' }}>{m.pos?'↑':'↓'} {m.change}</div>
+                    </div>
+                ))}
+            </div>
+            <div className="ai-rec p-6">
+                <div className="flex items-center gap-3 mb-3">
+                    <i data-lucide="lightbulb" style={{ color:'#eab308', width:22, height:22 }}></i>
+                    <h4 className="font-bold" style={{ color:'var(--t1)' }}>AI Recommendation</h4>
+                </div>
+                <p className="text-sm leading-relaxed" style={{ color:'var(--t2)' }}>Based on your data patterns, we recommend focusing on mobile user experience. Mobile traffic increased 34% but conversion is 2.1% lower than desktop.</p>
+            </div>
+        </div>
+    );
+}
+
+function AnalyticsTab() {
+    return (
+        <div className="space-y-6">
+            <h3 className="text-2xl font-black" style={{ color:'var(--t1)' }}>Deep Analytics</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+                <div className="rounded-2xl p-6" style={{ background:'var(--bg2)', border:'1px solid var(--bd)' }}>
+                    <h4 className="font-bold mb-4" style={{ color:'var(--t1)' }}>Revenue Trend (30 Days)</h4>
+                    <div className="flex items-end gap-1.5" style={{ height:160 }}>
+                        {[65,72,68,85,78,92,88,95,90,98].map((h,i) => <div key={i} className="cbar flex-1" style={{ height:`${h}%` }}/>)}
+                    </div>
+                </div>
+                <div className="rounded-2xl p-6" style={{ background:'var(--bg2)', border:'1px solid var(--bd)' }}>
+                    <h4 className="font-bold mb-5" style={{ color:'var(--t1)' }}>Traffic Sources</h4>
+                    <div className="space-y-4">
+                        {[{label:'Organic Search',pct:45,color:'#10b981'},{label:'Direct',pct:28,color:'#3b82f6'},{label:'Social Media',pct:18,color:'#8b5cf6'},{label:'Referral',pct:9,color:'#f97316'}].map(s => (
+                            <div key={s.label}>
+                                <div className="flex justify-between mb-1.5">
+                                    <span className="text-sm font-medium" style={{ color:'var(--t2)' }}>{s.label}</span>
+                                    <span className="text-sm font-bold" style={{ color:'var(--t1)' }}>{s.pct}%</span>
+                                </div>
+                                <div className="pt"><div className="pf" style={{ width:`${s.pct}%`, background:`linear-gradient(90deg,${s.color},${s.color}bb)` }}/></div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function PredictionsTab() {
+    return (
+        <div className="space-y-6">
+            <h3 className="text-2xl font-black" style={{ color:'var(--t1)' }}>AI-Powered Predictions</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+                <div className="rounded-2xl p-6" style={{ background:'linear-gradient(135deg,#7c3aed,#2563eb)' }}>
+                    <i data-lucide="trending-up" style={{ width:38, height:38, color:'#fff', marginBottom:14 }}></i>
+                    <h4 className="font-bold text-xl mb-2 text-white">Revenue Forecast</h4>
+                    <p className="text-3xl font-black mb-2 text-white">$342,800</p>
+                    <p className="text-sm text-white opacity-80">Predicted for next month (95% confidence)</p>
+                </div>
+                <div className="rounded-2xl p-6" style={{ background:'linear-gradient(135deg,#059669,#0891b2)' }}>
+                    <i data-lucide="users" style={{ width:38, height:38, color:'#fff', marginBottom:14 }}></i>
+                    <h4 className="font-bold text-xl mb-2 text-white">Customer Growth</h4>
+                    <p className="text-3xl font-black mb-2 text-white">+2,340</p>
+                    <p className="text-sm text-white opacity-80">Expected new users next month</p>
+                </div>
+            </div>
+            <div className="alert-w p-5">
+                <div className="flex items-start gap-3">
+                    <i data-lucide="alert-triangle" style={{ color:'#eab308', width:22, height:22, marginTop:2, flexShrink:0 }}></i>
+                    <div>
+                        <h4 className="font-bold mb-1" style={{ color:'var(--t1)' }}>Churn Risk Alert</h4>
+                        <p className="text-sm leading-relaxed" style={{ color:'var(--t2)' }}>AI detected 156 users at high risk of churning. Recommended: Send personalized retention campaign within 48 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   TESTIMONIALS
+────────────────────────────────────────────────────────────── */
+function Testimonials() {
+    const tests = [
+        { quote:'Growbrow.ai predicted our Q4 revenue within 3% accuracy. We stopped guessing and started growing. Best investment of the year.', name:'Sarah Chen', role:'VP Growth', company:'TechScale Inc.', color:'#8b5cf6', initial:'S' },
+        { quote:'We replaced 3 analytics tools with Growbrow. The AI recommendations alone saved us $200K in ad spend by redirecting budget to what actually converts.', name:'Marcus Reid', role:'CEO', company:'Shopify Store (8-fig)', color:'#ec4899', initial:'M' },
+        { quote:'The churn prediction model caught 89 at-risk customers before they left. We retained 74 of them. That\'s $180K ARR saved in one month.', name:'Priya Nair', role:'Head of Retention', company:'SaaS Platform', color:'#22d3ee', initial:'P' },
+    ];
+    return (
+        <section className="py-24 px-4 s1" style={{ position:'relative', zIndex:1 }}>
+            <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-16 reveal">
+                    <div className="badge mb-4">Testimonials</div>
+                    <h2 className="text-4xl font-black mb-3 gt">Loved by Growth Teams</h2>
+                    <p className="text-xl" style={{ color:'var(--t2)' }}>Don't take our word for it</p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-6">
+                    {tests.map((t,i) => (
+                        <div key={i} className={`tcard reveal rd${i+1}`}>
+                            <div className="flex mb-4 gap-0.5">
+                                {[1,2,3,4,5].map(s => <span key={s} style={{ color:'#f59e0b', fontSize:14 }}>★</span>)}
+                            </div>
+                            <p className="text-sm leading-relaxed mb-6" style={{ color:'var(--t2)' }}>"{t.quote}"</p>
+                            <div className="flex items-center gap-3">
+                                <div className="avatar" style={{ background:`linear-gradient(135deg,${t.color},${t.color}88)` }}>{t.initial}</div>
+                                <div>
+                                    <div className="font-bold text-sm" style={{ color:'var(--t1)' }}>{t.name}</div>
+                                    <div className="text-xs" style={{ color:'var(--t3)' }}>{t.role} · {t.company}</div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   PRICING CARD
+────────────────────────────────────────────────────────────── */
+function PricingCard({ name, price, period, features, popular }) {
+    const [hov, setHov] = useState(false);
+    return (
+        <div className={`reveal rd1 ${popular?'pp':''}`} style={{ position:'relative' }}>
+            <div style={{ background:'var(--card)', border:popular?'none':'1px solid var(--bd)', borderRadius:20, padding:32, height:'100%', transform:hov?'translateY(-8px)':'', boxShadow:hov?'var(--glow)':'', transition:'transform .3s,box-shadow .3s' }}
+                 onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
+                {popular && <div className="badge mb-4">Most Popular</div>}
+                <h3 className="text-2xl font-black mb-2" style={{ color:'var(--t1)' }}>{name}</h3>
+                <div className="mb-6 flex items-end gap-1">
+                    <span className="text-5xl font-black gt">{price}</span>
+                    {period && <span className="text-base mb-1.5" style={{ color:'var(--t3)' }}>/{period}</span>}
+                </div>
+                <ul className="space-y-3 mb-8">
+                    {features.map((f,i) => (
+                        <li key={i} className="flex items-center gap-3">
+                            <i data-lucide="check-circle" style={{ color:'#10b981', width:18, height:18, flexShrink:0 }}></i>
+                            <span className="text-sm" style={{ color:'var(--t2)' }}>{f}</span>
+                        </li>
+                    ))}
+                </ul>
+                <button className={`w-full py-4 rounded-2xl font-bold text-base ${popular?'btn-p':'btn-g'}`} style={{ border:popular?'none':'1px solid var(--bd)' }}>
+                    {popular ? <span>Get Started</span> : (price==='Custom'?'Contact Sales':'Get Started')}
+                </button>
+            </div>
+        </div>
+    );
+}
+
+/* ──────────────────────────────────────────────────────────────
+   DEMO MODAL
+────────────────────────────────────────────────────────────── */
+function DemoModal({ onClose }) {
+    const [email, setEmail] = useState('');
+    const [done, setDone]   = useState(false);
+    const submit = (e) => { e.preventDefault(); setDone(true); setTimeout(onClose, 2000); };
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background:'rgba(0,0,0,.72)', backdropFilter:'blur(10px)' }}>
+            <div className="relative rounded-3xl max-w-md w-full p-8" style={{ background:'var(--bg2)', border:'1px solid var(--bd)' }}>
+                <button onClick={onClose} className="absolute top-4 right-4 rounded-xl p-2" style={{ background:'var(--card)', color:'var(--t3)' }}
+                        onMouseEnter={e=>e.currentTarget.style.color='var(--t1)'} onMouseLeave={e=>e.currentTarget.style.color='var(--t3)'}>
+                    <i data-lucide="x" style={{ width:18, height:18 }}></i>
+                </button>
+                {!done ? (
+                    <>
+                        <h3 className="text-3xl font-black mb-2 gt">Start Free Trial</h3>
+                        <p className="mb-6 text-sm" style={{ color:'var(--t2)' }}>No credit card required. Instant access to all features.</p>
+                        <form onSubmit={submit} className="space-y-3">
+                            <input type="email" placeholder="Enter your email" value={email} onChange={e=>setEmail(e.target.value)} className="m-input" required/>
+                            <button type="submit" className="btn-p w-full py-4 rounded-2xl font-bold"><span>Start Free Trial</span></button>
+                        </form>
+                        <div className="mt-5 flex flex-wrap items-center justify-center gap-4 text-xs" style={{ color:'var(--t3)' }}>
+                            {['14-day trial','No credit card','Cancel anytime'].map(t => (
+                                <div key={t} className="flex items-center gap-1">
+                                    <i data-lucide="check" style={{ color:'#10b981', width:13, height:13 }}></i>
+                                    <span>{t}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                ) : (
+                    <div className="text-center py-8">
+                        <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background:'rgba(16,185,129,.14)' }}>
+                            <i data-lucide="check" style={{ color:'#10b981', width:36, height:36 }}></i>
+                        </div>
+                        <h3 className="text-2xl font-black mb-2" style={{ color:'var(--t1)' }}>Welcome Aboard! 🎉</h3>
+                        <p style={{ color:'var(--t2)' }}>Check your email for login credentials</p>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'));
+</script>
+</body>
+</html>
