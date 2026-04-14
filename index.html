@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growbrow.ai — AI Growth Intelligence Platform</title>
-    <meta name="description" content="The AI brain behind every growth decision. Turn raw data into revenue with predictive analytics and automated growth strategies.">
+    <title>Veltrix.ai — Revenue Intelligence Platform</title>
+    <meta name="description" content="The revenue intelligence platform that pays for itself. Turn raw data into precise predictions and measurable growth — guaranteed in 30 days.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📊</text></svg>">
     <link rel="stylesheet" href="shared.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        /* ── ANNOUNCEMENT BAR ── */
+        .ann-bar{background:linear-gradient(90deg,var(--v),var(--p),var(--c));padding:11px 24px;text-align:center;font-size:13px;font-weight:600;color:#fff;letter-spacing:.01em;position:relative;z-index:102;}
+        .ann-bar a{color:rgba(255,255,255,.95);border-bottom:1px dashed rgba(255,255,255,.5);transition:all .2s;}
+        .ann-bar a:hover{border-bottom-style:solid;border-bottom-color:#fff;}
+        .ann-new{background:rgba(255,255,255,.22);border-radius:50px;padding:2px 9px;font-size:10px;font-weight:900;letter-spacing:.06em;margin-right:10px;vertical-align:middle;}
         /* ── HERO ── */
-        .hero{min-height:100vh;display:flex;align-items:center;padding:100px 24px 80px;position:relative;}
+        .hero{min-height:100vh;display:flex;align-items:center;padding:144px 24px 80px;position:relative;}
         .hero-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;}
         @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:48px;}}
         .hero h1{font-size:clamp(2.6rem,4.5vw,3.6rem);font-weight:900;line-height:1.1;margin-bottom:20px;}
@@ -59,13 +64,19 @@
     </style>
 </head>
 <body>
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+    <span class="ann-new">NEW</span>
+    Veltrix AI 2.0 is live — GPT-4o + Claude powered forecasting with <strong>96% accuracy</strong>
+    <a href="features.html" style="margin-left:12px;">See what's new →</a>
+</div>
 <div id="cg"></div>
 <div class="mesh-bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
 
 <!-- NAV -->
 <nav class="site-nav" id="nav">
     <div class="nav-inner">
-        <a href="index.html" class="nav-logo"><span>📊</span><span class="gt">Growbrow.ai</span></a>
+        <a href="index.html" class="nav-logo"><span style="width:26px;height:26px;background:linear-gradient(135deg,var(--v2),var(--p2));border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">⚡</span><span class="gt">Veltrix</span><span style="color:var(--t3);font-weight:500;">.ai</span></a>
         <div class="nav-links">
             <a href="index.html"    class="nav-link active">Home</a>
             <a href="features.html" class="nav-link">Features</a>
@@ -100,7 +111,7 @@
         <div class="slide-in">
             <div class="hero-badge"><div class="pd"></div> GPT-4o Powered Analytics</div>
             <h1>The AI Brain Behind Every <span class="gt">Growth Decision</span></h1>
-            <p>Stop guessing. Start growing. Growbrow.ai turns your raw business data into precise predictions, automated strategies, and measurable revenue growth.</p>
+            <p>Stop guessing. Start growing. Veltrix.ai turns your raw business data into precise predictions, automated strategies, and measurable revenue growth.</p>
             <div class="hero-btns">
                 <button class="btn-p" style="padding:16px 32px;border-radius:14px;font-size:16px;" onclick="openDemo()"><span>Start Free Trial</span></button>
                 <button class="btn-g" style="padding:16px 32px;border-radius:14px;font-size:16px;"><a href="features.html">Explore Features →</a></button>
@@ -120,7 +131,7 @@
                         <div class="app-dot" style="background:#f59e0b;"></div>
                         <div class="app-dot" style="background:#10b981;"></div>
                     </div>
-                    <span class="app-title">Growbrow Dashboard</span>
+                    <span class="app-title">Veltrix Dashboard</span>
                     <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
                         <div style="width:7px;height:7px;border-radius:50%;background:#10b981;animation:pda 1.5s infinite;"></div>
                         <span style="font-size:11px;color:var(--t3);">Live</span>
@@ -387,7 +398,7 @@
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" id="tgrid">
             <div class="tcard reveal rd1">
                 <div style="display:flex;gap:2px;margin-bottom:14px;">★★★★★</div>
-                <p style="font-size:14px;line-height:1.7;color:var(--t2);margin-bottom:20px;">"Growbrow.ai predicted our Q4 revenue within 3% accuracy. We stopped guessing and started growing. Best investment of the year."</p>
+                <p style="font-size:14px;line-height:1.7;color:var(--t2);margin-bottom:20px;">"Veltrix.ai predicted our Q4 revenue within 3% accuracy. We stopped guessing and started growing. Best investment of the year."</p>
                 <div style="display:flex;align-items:center;gap:12px;">
                     <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#6d28d9);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:16px;">S</div>
                     <div><div style="font-weight:700;font-size:14px;color:var(--t1);">Sarah Chen</div><div style="font-size:12px;color:var(--t3);">VP Growth · TechScale Inc.</div></div>
@@ -395,7 +406,7 @@
             </div>
             <div class="tcard reveal rd2">
                 <div style="display:flex;gap:2px;margin-bottom:14px;">★★★★★</div>
-                <p style="font-size:14px;line-height:1.7;color:var(--t2);margin-bottom:20px;">"We replaced 3 analytics tools with Growbrow. The AI saved us $200K in ad spend by redirecting budget to what actually converts."</p>
+                <p style="font-size:14px;line-height:1.7;color:var(--t2);margin-bottom:20px;">"We replaced 3 analytics tools with Veltrix. The AI saved us $200K in ad spend by redirecting budget to what actually converts."</p>
                 <div style="display:flex;align-items:center;gap:12px;">
                     <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#ec4899,#db2777);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:16px;">M</div>
                     <div><div style="font-weight:700;font-size:14px;color:var(--t1);">Marcus Reid</div><div style="font-size:12px;color:var(--t3);">CEO · 8-Figure Shopify Store</div></div>
@@ -421,10 +432,10 @@
             <div class="reveal">
                 <div class="badge" style="margin-bottom:20px;">Enterprise Ready</div>
                 <h2 style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:900;line-height:1.2;margin-bottom:16px;color:#eef2ff;">Built for Teams That <span class="gt">Move Fast</span></h2>
-                <p style="font-size:16px;color:#8892a8;line-height:1.7;margin-bottom:32px;">From startups to Fortune 500. Growbrow scales with you — no engineering bottlenecks, no data silos.</p>
+                <p style="font-size:16px;color:#8892a8;line-height:1.7;margin-bottom:32px;">From startups to Fortune 500. Veltrix scales with you — no engineering bottlenecks, no data silos.</p>
                 <div class="ent-check">
                     <div class="ent-check-icon"><i data-lucide="check" style="width:14px;height:14px;color:#fff;"></i></div>
-                    <div><strong style="color:#eef2ff;font-size:15px;">REST API + Webhooks</strong><p style="color:#8892a8;font-size:13px;margin-top:2px;">Build on top of Growbrow. Full API access included.</p></div>
+                    <div><strong style="color:#eef2ff;font-size:15px;">REST API + Webhooks</strong><p style="color:#8892a8;font-size:13px;margin-top:2px;">Build on top of Veltrix. Full API access included.</p></div>
                 </div>
                 <div class="ent-check">
                     <div class="ent-check-icon"><i data-lucide="check" style="width:14px;height:14px;color:#fff;"></i></div>
@@ -486,7 +497,7 @@
 <footer class="site-footer">
     <div class="footer-grid">
         <div class="footer-brand">
-            <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:900;"><span>📊</span><span class="gt">Growbrow.ai</span></a>
+            <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:900;"><span>📊</span><span class="gt">Veltrix.ai</span></a>
             <p>The AI brain behind every growth decision. Turn raw data into measurable revenue growth.</p>
             <div style="display:flex;gap:12px;margin-top:16px;">
                 <a href="#" style="width:36px;height:36px;background:var(--card);border:1px solid var(--bd);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .2s;" onmouseover="this.style.borderColor='var(--bda)'" onmouseout="this.style.borderColor='var(--bd)'">𝕏</a>
@@ -499,7 +510,7 @@
         <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Security</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-        <p>© 2024 Growbrow.ai. All rights reserved.</p>
+        <p>© 2024 Veltrix.ai. All rights reserved.</p>
         <p>Built with ❤️ and AI</p>
     </div>
 </footer>
