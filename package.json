@@ -1,0 +1,32 @@
+{
+  "name": "growbrow-ai-saas",
+  "version": "1.0.0",
+  "description": "AI-Powered Business Growth Analytics Platform - A modern SaaS website for business intelligence and predictive analytics",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "npx serve .",
+    "deploy:netlify": "netlify deploy --prod",
+    "deploy:vercel": "vercel --prod"
+  },
+  "keywords": [
+    "saas",
+    "ai",
+    "analytics",
+    "business-growth",
+    "react",
+    "tailwindcss",
+    "dashboard",
+    "predictive-analytics"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/growbrow-saas.git"
+  },
+  "homepage": "https://YOUR_USERNAME.github.io/growbrow-saas",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
