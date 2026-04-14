@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Growbrow.ai</title>
+    <meta name="description" content="Get in touch with the Growbrow.ai team. Sales, support, partnerships — we're here to help.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📊</text></svg>">
+    <link rel="stylesheet" href="shared.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .contact-hero{padding:140px 24px 60px;text-align:center;position:relative;}
+        .contact-grid{display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start;max-width:1000px;margin:0 auto;}
+        @media(max-width:900px){.contact-grid{grid-template-columns:1fr;}}
+        .contact-card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:32px;}
+        .info-item{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid var(--bd);}
+        .info-item:last-child{border-bottom:none;}
+        .info-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+        @media(max-width:600px){.reason-grid{grid-template-columns:1fr;}}
+        .reason-card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;cursor:pointer;transition:all .2s;}
+        .reason-card:hover,.reason-card.sel{border-color:var(--bda);background:var(--cardh);}
+        .reason-card.sel .reason-icon{background:linear-gradient(135deg,var(--v),var(--p));}
+        .reason-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;background:var(--bg3);transition:all .2s;}
+        .form-group{margin-bottom:20px;}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+        @media(max-width:600px){.form-row{grid-template-columns:1fr;}}
+        .success-state{text-align:center;padding:48px 24px;display:none;}
+    </style>
+</head>
+<body>
+<div id="cg"></div>
+<div class="mesh-bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+
+<!-- NAV -->
+<nav class="site-nav" id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo"><span>📊</span><span class="gt">Growbrow.ai</span></a>
+        <div class="nav-links">
+            <a href="index.html"    class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="pricing.html"  class="nav-link">Pricing</a>
+            <a href="about.html"    class="nav-link">About</a>
+            <a href="contact.html"  class="nav-link active">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="tog" id="tog"><div class="tog-icons"><span>☀️</span><span>🌙</span></div><div class="tog-thumb"></div></button>
+            <button class="nav-ghost" onclick="openDemo()">Login</button>
+            <button class="nav-cta" onclick="openDemo()"><span>Start Free Trial</span></button>
+            <button class="mob-menu-btn" id="mob-btn"><i data-lucide="menu" style="width:20px;height:20px;"></i></button>
+        </div>
+    </div>
+    <div class="mob-menu" id="mob-menu">
+        <a href="index.html" class="mob-link">Home</a>
+        <a href="features.html" class="mob-link">Features</a>
+        <a href="pricing.html" class="mob-link">Pricing</a>
+        <a href="about.html" class="mob-link">About</a>
+        <a href="contact.html" class="mob-link active">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="contact-hero s1">
+    <div class="grid-bg"></div>
+    <div style="position:relative;z-index:1;">
+        <div class="hero-badge slide-in" style="margin-bottom:24px;"><div class="pd"></div>Get In Touch</div>
+        <h1 class="slide-in" style="font-size:clamp(2.5rem,4.5vw,3.5rem);font-weight:900;margin-bottom:16px;">We're Here to <span class="gt">Help You Grow</span></h1>
+        <p class="slide-in" style="font-size:18px;color:var(--t2);max-width:540px;margin:0 auto;">Sales, support, partnerships — whatever you need, our team typically replies within 2 hours.</p>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="section s1" style="padding-top:0;">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- FORM -->
+            <div class="contact-card reveal">
+                <h3 style="font-size:20px;font-weight:900;margin-bottom:8px;color:var(--t1);">Send Us a Message</h3>
+                <p style="font-size:14px;color:var(--t2);margin-bottom:24px;">We read every message and reply within 2 business hours.</p>
+
+                <!-- Reason selector -->
+                <div style="margin-bottom:24px;">
+                    <label class="form-label" style="margin-bottom:12px;">What can we help with?</label>
+                    <div class="reason-grid">
+                        <div class="reason-card sel" data-reason="sales" onclick="selectReason(this)">
+                            <div class="reason-icon"><i data-lucide="trending-up" style="width:18px;height:18px;color:white;"></i></div>
+                            <div style="font-size:14px;font-weight:700;color:var(--t1);">Sales</div>
+                            <div style="font-size:12px;color:var(--t3);">Try or buy Growbrow</div>
+                        </div>
+                        <div class="reason-card" data-reason="support" onclick="selectReason(this)">
+                            <div class="reason-icon"><i data-lucide="life-buoy" style="width:18px;height:18px;color:var(--t3);"></i></div>
+                            <div style="font-size:14px;font-weight:700;color:var(--t1);">Support</div>
+                            <div style="font-size:12px;color:var(--t3);">Help with your account</div>
+                        </div>
+                        <div class="reason-card" data-reason="enterprise" onclick="selectReason(this)">
+                            <div class="reason-icon"><i data-lucide="building-2" style="width:18px;height:18px;color:var(--t3);"></i></div>
+                            <div style="font-size:14px;font-weight:700;color:var(--t1);">Enterprise</div>
+                            <div style="font-size:12px;color:var(--t3);">Custom plan & pricing</div>
+                        </div>
+                        <div class="reason-card" data-reason="partner" onclick="selectReason(this)">
+                            <div class="reason-icon"><i data-lucide="handshake" style="width:18px;height:18px;color:var(--t3);"></i></div>
+                            <div style="font-size:14px;font-weight:700;color:var(--t1);">Partnership</div>
+                            <div style="font-size:12px;color:var(--t3);">Integrate or resell</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input" placeholder="Riya" id="fname">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input" placeholder="Sharma" id="lname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Work Email</label>
+                        <input type="email" class="form-input" placeholder="riya@company.com" id="cemail">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Company</label>
+                        <input type="text" class="form-input" placeholder="Your company name" id="company">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Company Size</label>
+                        <select class="form-input" id="size" style="cursor:pointer;">
+                            <option value="">Select company size</option>
+                            <option>1–10 employees</option>
+                            <option>11–50 employees</option>
+                            <option>51–200 employees</option>
+                            <option>201–1000 employees</option>
+                            <option>1000+ employees</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-input" placeholder="Tell us about your business and what you're trying to achieve..." id="message" style="min-height:100px;"></textarea>
+                    </div>
+                    <button class="btn-p" style="width:100%;padding:14px;border-radius:12px;font-size:15px;justify-content:center;" onclick="submitContact()">
+                        <span>Send Message →</span>
+                    </button>
+                    <p style="font-size:12px;color:var(--t3);text-align:center;margin-top:12px;">We typically reply within 2 business hours.</p>
+                </div>
+
+                <div class="success-state" id="contact-success">
+                    <div style="width:64px;height:64px;border-radius:50%;background:rgba(16,185,129,.14);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+                        <i data-lucide="check" style="width:36px;height:36px;color:#10b981;"></i>
+                    </div>
+                    <h3 style="font-size:22px;font-weight:900;color:var(--t1);margin-bottom:8px;">Message Sent! 🎉</h3>
+                    <p style="font-size:15px;color:var(--t2);margin-bottom:24px;">We'll get back to you within 2 business hours.</p>
+                    <button class="btn-g" style="padding:12px 24px;border-radius:10px;font-size:14px;" onclick="resetContact()">Send Another Message</button>
+                </div>
+            </div>
+
+            <!-- SIDE INFO -->
+            <div class="reveal rd1">
+                <div class="contact-card" style="margin-bottom:20px;">
+                    <h3 style="font-size:16px;font-weight:800;margin-bottom:4px;color:var(--t1);">Contact Details</h3>
+                    <p style="font-size:13px;color:var(--t3);margin-bottom:20px;">Multiple ways to reach us</p>
+                    <div class="info-item">
+                        <div class="info-icon" style="background:rgba(139,92,246,.12);"><i data-lucide="mail" style="width:18px;height:18px;color:#8b5cf6;"></i></div>
+                        <div><div style="font-size:13px;font-weight:700;color:var(--t1);">Email</div><div style="font-size:13px;color:var(--t2);">hello@growbrow.ai</div></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon" style="background:rgba(236,72,153,.12);"><i data-lucide="message-circle" style="width:18px;height:18px;color:#ec4899;"></i></div>
+                        <div><div style="font-size:13px;font-weight:700;color:var(--t1);">Live Chat</div><div style="font-size:13px;color:var(--t2);">Available Mon–Fri, 9am–6pm IST</div></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon" style="background:rgba(34,211,238,.12);"><i data-lucide="map-pin" style="width:18px;height:18px;color:#22d3ee;"></i></div>
+                        <div><div style="font-size:13px;font-weight:700;color:var(--t1);">Headquarters</div><div style="font-size:13px;color:var(--t2);">Bengaluru, India 🇮🇳</div></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon" style="background:rgba(16,185,129,.12);"><i data-lucide="clock" style="width:18px;height:18px;color:#10b981;"></i></div>
+                        <div><div style="font-size:13px;font-weight:700;color:var(--t1);">Response Time</div><div style="font-size:13px;color:var(--t2);">Under 2 business hours</div></div>
+                    </div>
+                </div>
+
+                <div class="contact-card" style="margin-bottom:20px;">
+                    <h3 style="font-size:16px;font-weight:800;margin-bottom:16px;color:var(--t1);">Quick Links</h3>
+                    <div style="display:flex;flex-direction:column;gap:8px;">
+                        <a href="features.html" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;font-size:14px;color:var(--t2);transition:all .2s;" onmouseover="this.style.background='var(--card)';this.style.color='var(--v2)';" onmouseout="this.style.background='transparent';this.style.color='var(--t2)';">→ Explore Features</a>
+                        <a href="pricing.html" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;font-size:14px;color:var(--t2);transition:all .2s;" onmouseover="this.style.background='var(--card)';this.style.color='var(--v2)';" onmouseout="this.style.background='transparent';this.style.color='var(--t2)';">→ View Pricing</a>
+                        <a href="#" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;font-size:14px;color:var(--t2);transition:all .2s;" onmouseover="this.style.background='var(--card)';this.style.color='var(--v2)';" onmouseout="this.style.background='transparent';this.style.color='var(--t2)';">→ Documentation</a>
+                        <a href="#" style="display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;font-size:14px;color:var(--t2);transition:all .2s;" onmouseover="this.style.background='var(--card)';this.style.color='var(--v2)';" onmouseout="this.style.background='transparent';this.style.color='var(--t2)';">→ System Status</a>
+                    </div>
+                </div>
+
+                <div style="background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(236,72,153,.08));border:1px solid rgba(139,92,246,.2);border-radius:16px;padding:20px;">
+                    <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:8px;">⚡ Book a Live Demo</div>
+                    <p style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:14px;">See Growbrow in action with your own data. 30-minute call with a growth expert.</p>
+                    <button class="btn-p" style="width:100%;padding:11px;border-radius:10px;font-size:13px;justify-content:center;" onclick="openDemo()"><span>Book Free Demo</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section s2">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="badge">Support FAQ</div>
+            <h2 class="gt">Common Questions</h2>
+            <p>Quick answers before you reach out</p>
+        </div>
+        <div style="max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:12px;" id="faq-grid"></div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="aurora section">
+    <div class="aurora-in"><div class="aw aw1"></div><div class="aw aw2"></div><div class="aw aw3"></div></div>
+    <div class="container" style="text-align:center;position:relative;z-index:2;">
+        <div class="reveal">
+            <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:16px;color:var(--t1);">Don't Wait — <span class="gt">Start Growing Today</span></h2>
+            <p style="font-size:18px;color:var(--t2);margin-bottom:40px;">14-day free trial. No credit card. Cancel anytime.</p>
+            <button class="btn-p" style="padding:18px 48px;border-radius:14px;font-size:17px;" onclick="openDemo()"><span>Start Free Trial →</span></button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" style="display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:900;"><span>📊</span><span class="gt">Growbrow.ai</span></a><p>The AI brain behind every growth decision.</p></div>
+        <div class="footer-col"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="index.html">Demo</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul><li><a href="#">Docs</a></li><li><a href="#">API</a></li><li><a href="contact.html">Support</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Growbrow.ai. All rights reserved.</p></div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="demo-modal" style="display:none;">
+    <div class="modal-box">
+        <button onclick="closeDemo()" style="position:absolute;top:16px;right:16px;background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px;cursor:pointer;color:var(--t2);"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+        <h3 class="gt" style="font-size:26px;font-weight:900;margin-bottom:8px;">Start Free Trial</h3>
+        <p style="font-size:14px;color:var(--t2);margin-bottom:20px;">No credit card required. Full access for 14 days.</p>
+        <div id="modal-form"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@company.com" id="demo-email" style="margin-bottom:12px;"><button class="btn-p" style="width:100%;padding:14px;border-radius:12px;font-size:15px;justify-content:center;" onclick="submitDemo()"><span>Start Free Trial →</span></button></div>
+        <div id="modal-success" style="display:none;text-align:center;padding:20px 0;"><div style="width:60px;height:60px;border-radius:50%;background:rgba(16,185,129,.14);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;"><i data-lucide="check" style="width:32px;height:32px;color:#10b981;"></i></div><h3 style="font-size:22px;font-weight:900;color:var(--t1);margin-bottom:8px;">You're in! 🎉</h3><p style="color:var(--t2);">Check your email for access details.</p></div>
+    </div>
+</div>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.body.className = 'theme-' + savedTheme;
+document.getElementById('tog').addEventListener('click', () => { const t = document.body.className.includes('dark') ? 'light' : 'dark'; document.body.className = 'theme-' + t; localStorage.setItem('theme', t); });
+const cg = document.getElementById('cg'); document.addEventListener('mousemove', e => { cg.style.left = e.clientX+'px'; cg.style.top = e.clientY+'px'; });
+const nav = document.getElementById('nav'); window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+document.getElementById('mob-btn').addEventListener('click', () => document.getElementById('mob-menu').classList.toggle('open'));
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }), { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function selectReason(el) {
+    document.querySelectorAll('.reason-card').forEach(c => { c.classList.remove('sel'); c.querySelector('.reason-icon').style.background='var(--bg3)'; c.querySelector('i').style.color='var(--t3)'; });
+    el.classList.add('sel');
+    el.querySelector('.reason-icon').style.background='linear-gradient(135deg,var(--v),var(--p))';
+    el.querySelector('i').style.color='white';
+}
+
+function submitContact() {
+    const email = document.getElementById('cemail').value;
+    if (!email) { document.getElementById('cemail').style.borderColor = 'var(--p2)'; return; }
+    document.getElementById('contact-form').style.display = 'none';
+    const s = document.getElementById('contact-success');
+    s.style.display = 'block';
+    lucide.createIcons();
+}
+function resetContact() {
+    document.getElementById('contact-form').style.display = 'block';
+    document.getElementById('contact-success').style.display = 'none';
+    document.getElementById('fname').value = '';
+    document.getElementById('lname').value = '';
+    document.getElementById('cemail').value = '';
+    document.getElementById('company').value = '';
+    document.getElementById('message').value = '';
+}
+
+const faqs = [
+    { q: 'How fast can I get started?', a: 'Most customers are up and running within 15 minutes. Our setup wizard walks you through connecting your first data source, and our AI starts generating insights within hours.' },
+    { q: 'Do I need technical skills to use Growbrow?', a: 'Not at all. Growbrow is built for business teams — marketers, founders, and growth managers. No SQL, no coding, no data engineering required.' },
+    { q: 'My data is sensitive. How is it protected?', a: 'We take security seriously. Your data is encrypted at rest (AES-256) and in transit (TLS 1.3). We are SOC 2 Type II certified and GDPR compliant. We never share or sell your data.' },
+    { q: 'Can I connect multiple data sources?', a: 'Yes! Growbrow connects to 100+ data sources including CRMs, ad platforms, e-commerce tools, databases, and more. All plans include multi-source connectivity.' },
+    { q: 'What if I need a custom integration?', a: 'Our REST API and webhooks let you build custom integrations. Enterprise customers also get dedicated engineering support for custom connectors.' },
+    { q: 'How do I cancel my subscription?', a: 'You can cancel anytime from your account settings — no cancellation fees. Your account remains active until the end of your current billing period.' },
+];
+const fg = document.getElementById('faq-grid');
+fg.innerHTML = faqs.map((f, i) => `<div class="faq-item" id="faq-${i}"><div class="faq-q" onclick="toggleFaq(${i})"><span>${f.q}</span><i data-lucide="plus" class="faq-icon" style="width:18px;height:18px;"></i></div><div class="faq-a" id="fa-${i}">${f.a}</div></div>`).join('');
+function toggleFaq(i) { document.getElementById('faq-'+i).classList.toggle('open'); document.getElementById('fa-'+i).classList.toggle('open'); }
+
+function openDemo() { document.getElementById('demo-modal').style.display='flex'; lucide.createIcons(); }
+function closeDemo() { document.getElementById('demo-modal').style.display='none'; }
+function submitDemo() { const e=document.getElementById('demo-email').value; if(!e)return; document.getElementById('modal-form').style.display='none'; document.getElementById('modal-success').style.display='block'; lucide.createIcons(); setTimeout(closeDemo,2500); }
+document.getElementById('demo-modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeDemo(); });
+lucide.createIcons();
+</script>
+</body>
+</html>

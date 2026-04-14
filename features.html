@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features — Growbrow.ai</title>
+    <meta name="description" content="Explore all Growbrow.ai features: AI analytics, predictive forecasting, customer intelligence, automated insights and 100+ integrations.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📊</text></svg>">
+    <link rel="stylesheet" href="shared.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .feat-hero{padding:140px 24px 80px;text-align:center;position:relative;}
+        .feat-hero h1{font-size:clamp(2.5rem,4.5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:20px;}
+        .feat-hero p{font-size:18px;color:var(--t2);max-width:600px;margin:0 auto 40px;}
+        .feat-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:800px;margin:0 auto 80px;}
+        .feat-tab{padding:10px 20px;border-radius:50px;font-size:13px;font-weight:600;border:1px solid var(--bd);color:var(--t2);cursor:pointer;transition:all .2s;background:var(--card);}
+        .feat-tab:hover,.feat-tab.on{background:linear-gradient(135deg,var(--v),var(--p));color:#fff;border-color:transparent;}
+        .feat-detail{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:80px 0;border-bottom:1px solid var(--bd);}
+        .feat-detail:last-child{border-bottom:none;}
+        .feat-detail.rev{direction:rtl;}
+        .feat-detail.rev>*{direction:ltr;}
+        @media(max-width:900px){.feat-detail,.feat-detail.rev{grid-template-columns:1fr;direction:ltr;gap:40px;}}
+        .feat-tag{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:block;}
+        .feat-vis{background:var(--bg3);border:1px solid var(--bd);border-radius:20px;overflow:hidden;}
+        .feat-vis-top{background:var(--bg2);padding:12px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;}
+        .feat-vis-body{padding:20px;}
+        .int-section .int-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:14px;}
+        .int-card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:7px;transition:all .3s;cursor:default;}
+        .int-card:hover{border-color:var(--bda);transform:translateY(-4px);box-shadow:var(--glows);}
+    </style>
+</head>
+<body>
+<div id="cg"></div>
+<div class="mesh-bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+
+<!-- NAV -->
+<nav class="site-nav" id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo"><span>📊</span><span class="gt">Growbrow.ai</span></a>
+        <div class="nav-links">
+            <a href="index.html"    class="nav-link">Home</a>
+            <a href="features.html" class="nav-link active">Features</a>
+            <a href="pricing.html"  class="nav-link">Pricing</a>
+            <a href="about.html"    class="nav-link">About</a>
+            <a href="contact.html"  class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="tog" id="tog"><div class="tog-icons"><span>☀️</span><span>🌙</span></div><div class="tog-thumb"></div></button>
+            <button class="nav-ghost" onclick="openDemo()">Login</button>
+            <button class="nav-cta" onclick="openDemo()"><span>Start Free Trial</span></button>
+            <button class="mob-menu-btn" id="mob-btn"><i data-lucide="menu" style="width:20px;height:20px;"></i></button>
+        </div>
+    </div>
+    <div class="mob-menu" id="mob-menu">
+        <a href="index.html" class="mob-link">Home</a>
+        <a href="features.html" class="mob-link active">Features</a>
+        <a href="pricing.html" class="mob-link">Pricing</a>
+        <a href="about.html" class="mob-link">About</a>
+        <a href="contact.html" class="mob-link">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="feat-hero s1">
+    <div class="grid-bg"></div>
+    <div style="position:relative;z-index:1;">
+        <div class="hero-badge slide-in" style="margin-bottom:24px;"><div class="pd"></div>6 Core Features</div>
+        <h1 class="slide-in">Everything You Need to <span class="gt">Grow Faster</span></h1>
+        <p class="slide-in">A complete growth intelligence platform. From raw data to revenue — all in one place.</p>
+        <div class="feat-nav">
+            <span class="feat-tab on">All Features</span>
+            <span class="feat-tab">AI Analytics</span>
+            <span class="feat-tab">Forecasting</span>
+            <span class="feat-tab">Customer Intel</span>
+            <span class="feat-tab">Automation</span>
+            <span class="feat-tab">Integrations</span>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURE 1: AI ANALYTICS -->
+<section class="section s2">
+    <div class="container">
+        <div class="feat-detail reveal">
+            <div class="feat-text">
+                <span class="feat-tag" style="color:#8b5cf6;">01 — AI Analytics</span>
+                <h3 style="font-size:clamp(1.75rem,3vw,2.2rem);font-weight:900;margin-bottom:16px;color:var(--t1);">Your Data, Understood <span class="gt">Instantly</span></h3>
+                <p style="font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:24px;">Stop drowning in dashboards. Growbrow's AI reads your data like a senior analyst — surfacing what matters, ignoring the noise, and telling you exactly what to do next.</p>
+                <ul class="feat-list">
+                    <li>Unified data from 100+ sources in real-time</li>
+                    <li>Automatic anomaly detection and root cause analysis</li>
+                    <li>Multi-touch attribution across all channels</li>
+                    <li>Custom metrics, KPI tracking and goal monitoring</li>
+                    <li>Natural language query — ask in plain English</li>
+                </ul>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+                    <span class="badge">Real-time</span>
+                    <span class="badge">NLP Queries</span>
+                    <span class="badge">Auto-reports</span>
+                </div>
+            </div>
+            <div class="feat-vis reveal rd1">
+                <div class="feat-vis-top">
+                    <div style="display:flex;gap:6px;"><div style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div><div style="width:10px;height:10px;border-radius:50%;background:#10b981;"></div></div>
+                    <span style="font-size:13px;color:var(--t2);font-weight:500;">AI Analytics Engine</span>
+                </div>
+                <div class="feat-vis-body">
+                    <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:12px;">
+                        <div style="font-size:11px;color:var(--t3);margin-bottom:10px;font-weight:600;">Ask AI anything...</div>
+                        <div style="background:var(--bg1);border:1px solid var(--bda);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--t2);">"Why did revenue drop 12% last Tuesday?"</div>
+                        <div style="margin-top:10px;background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(34,211,238,.05));border:1px solid rgba(139,92,246,.2);border-radius:8px;padding:12px;">
+                            <div style="font-size:11px;font-weight:700;color:#8b5cf6;margin-bottom:6px;">🤖 AI Analysis</div>
+                            <div style="font-size:12px;color:var(--t2);line-height:1.6;">Revenue dip linked to email campaign delay (Tuesday 9am). Mobile checkout error affected 342 sessions. Fix: Re-deploy CTA button. Estimated recovery: +$8,400.</div>
+                        </div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+                        <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;text-align:center;">
+                            <div style="font-size:18px;font-weight:900;color:#10b981;">↑45%</div>
+                            <div style="font-size:10px;color:var(--t3);">Organic</div>
+                        </div>
+                        <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;text-align:center;">
+                            <div style="font-size:18px;font-weight:900;color:#3b82f6;">4.8%</div>
+                            <div style="font-size:10px;color:var(--t3);">Conv. Rate</div>
+                        </div>
+                        <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;text-align:center;">
+                            <div style="font-size:18px;font-weight:900;color:#8b5cf6;">$127</div>
+                            <div style="font-size:10px;color:var(--t3);">Avg Order</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURE 2: PREDICTIVE FORECASTING -->
+<section class="section s1">
+    <div class="container">
+        <div class="feat-detail rev reveal">
+            <div class="feat-text">
+                <span class="feat-tag" style="color:#ec4899;">02 — Predictive Forecasting</span>
+                <h3 style="font-size:clamp(1.75rem,3vw,2.2rem);font-weight:900;margin-bottom:16px;color:var(--t1);">Know What Happens <span class="gt">Before It Happens</span></h3>
+                <p style="font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:24px;">Our ML models — trained on billions of data points — predict your revenue, churn, and market shifts weeks in advance with 95% accuracy. Plan with confidence, not gut feeling.</p>
+                <ul class="feat-list">
+                    <li>30/60/90-day revenue forecasting with confidence bands</li>
+                    <li>Churn detection 30 days before it happens</li>
+                    <li>Customer lifetime value prediction per cohort</li>
+                    <li>Demand forecasting and inventory optimization</li>
+                    <li>Market trend alerts and competitor signal detection</li>
+                </ul>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+                    <span class="badge">95% Accuracy</span>
+                    <span class="badge">30-day ahead</span>
+                    <span class="badge">Confidence Bands</span>
+                </div>
+            </div>
+            <div class="feat-vis reveal rd1">
+                <div class="feat-vis-top">
+                    <div style="display:flex;gap:6px;"><div style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div><div style="width:10px;height:10px;border-radius:50%;background:#10b981;"></div></div>
+                    <span style="font-size:13px;color:var(--t2);font-weight:500;">Forecast Engine</span>
+                </div>
+                <div class="feat-vis-body">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+                        <div style="background:linear-gradient(135deg,#7c3aed,#2563eb);border-radius:12px;padding:16px;color:#fff;">
+                            <i data-lucide="trending-up" style="width:20px;height:20px;margin-bottom:8px;"></i>
+                            <div style="font-size:10px;opacity:.8;margin-bottom:4px;">Next 30 Days</div>
+                            <div style="font-size:20px;font-weight:900;">$342,800</div>
+                            <div style="font-size:10px;opacity:.8;">95% confidence</div>
+                        </div>
+                        <div style="background:linear-gradient(135deg,#059669,#0891b2);border-radius:12px;padding:16px;color:#fff;">
+                            <i data-lucide="users" style="width:20px;height:20px;margin-bottom:8px;"></i>
+                            <div style="font-size:10px;opacity:.8;margin-bottom:4px;">New Users</div>
+                            <div style="font-size:20px;font-weight:900;">+2,340</div>
+                            <div style="font-size:10px;opacity:.8;">High confidence</div>
+                        </div>
+                    </div>
+                    <div style="background:rgba(234,179,8,.08);border-left:3px solid #eab308;border-radius:8px;padding:12px;margin-bottom:10px;">
+                        <div style="font-size:11px;font-weight:700;color:#eab308;margin-bottom:4px;">⚠ Churn Alert</div>
+                        <div style="font-size:12px;color:var(--t2);">156 users at high risk. Act in next 48h to save ~$62K ARR.</div>
+                    </div>
+                    <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;">
+                        <div style="font-size:11px;color:var(--t3);margin-bottom:8px;font-weight:600;">90-Day Revenue Forecast</div>
+                        <div style="display:flex;align-items:flex-end;gap:3px;height:50px;">
+                            <div class="cbar" style="flex:1;height:60%;"></div>
+                            <div class="cbar" style="flex:1;height:68%;"></div>
+                            <div class="cbar" style="flex:1;height:72%;"></div>
+                            <div class="cbar" style="flex:1;height:80%;"></div>
+                            <div class="cbar" style="flex:1;height:85%;opacity:.5;"></div>
+                            <div class="cbar" style="flex:1;height:90%;opacity:.4;"></div>
+                            <div class="cbar" style="flex:1;height:95%;opacity:.3;"></div>
+                        </div>
+                        <div style="font-size:10px;color:var(--t3);margin-top:4px;">Past ←→ Forecast (dashed)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURE 3: CUSTOMER INTELLIGENCE -->
+<section class="section s2">
+    <div class="container">
+        <div class="feat-detail reveal">
+            <div class="feat-text">
+                <span class="feat-tag" style="color:#22d3ee;">03 — Customer Intelligence</span>
+                <h3 style="font-size:clamp(1.75rem,3vw,2.2rem);font-weight:900;margin-bottom:16px;color:var(--t1);">360° View of Every <span class="gt">Customer</span></h3>
+                <p style="font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:24px;">Build deep profiles on every customer — their behavior, preferences, purchase patterns, and predicted future value. Automatically segment and act on it.</p>
+                <ul class="feat-list">
+                    <li>Automatic AI-driven customer segmentation</li>
+                    <li>Individual purchase propensity scores</li>
+                    <li>RFM analysis and loyalty tier scoring</li>
+                    <li>Personalized recommendation engine</li>
+                    <li>Behavioral event tracking and journey mapping</li>
+                </ul>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+                    <span class="badge">360° Profiles</span>
+                    <span class="badge">Auto Segments</span>
+                    <span class="badge">RFM Analysis</span>
+                </div>
+            </div>
+            <div class="feat-vis reveal rd1">
+                <div class="feat-vis-top">
+                    <div style="display:flex;gap:6px;"><div style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div><div style="width:10px;height:10px;border-radius:50%;background:#10b981;"></div></div>
+                    <span style="font-size:13px;color:var(--t2);font-weight:500;">Customer Segments</span>
+                </div>
+                <div class="feat-vis-body">
+                    <div style="display:flex;flex-direction:column;gap:8px;">
+                        <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div style="width:10px;height:10px;border-radius:50%;background:#10b981;"></div><div><div style="font-size:13px;font-weight:700;color:var(--t1);">Champions</div><div style="font-size:11px;color:var(--t3);">High value, highly loyal</div></div></div><div style="text-align:right;"><div style="font-size:16px;font-weight:800;color:#10b981;">842</div><div style="font-size:10px;color:var(--t3);">users · LTV $1,240</div></div></div>
+                        <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div style="width:10px;height:10px;border-radius:50%;background:#3b82f6;"></div><div><div style="font-size:13px;font-weight:700;color:var(--t1);">Loyal</div><div style="font-size:11px;color:var(--t3);">Regular buyers</div></div></div><div style="text-align:right;"><div style="font-size:16px;font-weight:800;color:#3b82f6;">2,341</div><div style="font-size:10px;color:var(--t3);">users · LTV $580</div></div></div>
+                        <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div><div><div style="font-size:13px;font-weight:700;color:var(--t1);">At Risk</div><div style="font-size:11px;color:var(--t3);">Needs attention</div></div></div><div style="text-align:right;"><div style="font-size:16px;font-weight:800;color:#f59e0b;">156</div><div style="font-size:10px;color:var(--t3);">users · $62K ARR</div></div></div>
+                        <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:12px;display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:10px;"><div style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></div><div><div style="font-size:13px;font-weight:700;color:var(--t1);">Lost</div><div style="font-size:11px;color:var(--t3);">Win back campaign</div></div></div><div style="text-align:right;"><div style="font-size:16px;font-weight:800;color:#ef4444;">89</div><div style="font-size:10px;color:var(--t3);">users · retarget</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURE 4: AUTOMATED INSIGHTS -->
+<section class="section s1">
+    <div class="container">
+        <div class="feat-detail rev reveal">
+            <div class="feat-text">
+                <span class="feat-tag" style="color:#10b981;">04 — Automated Insights</span>
+                <h3 style="font-size:clamp(1.75rem,3vw,2.2rem);font-weight:900;margin-bottom:16px;color:var(--t1);">AI That Works While <span class="gt">You Sleep</span></h3>
+                <p style="font-size:15px;color:var(--t2);line-height:1.7;margin-bottom:24px;">Growbrow monitors your entire business 24/7 and automatically fires alerts, recommendations, and actions — so you never miss an opportunity or threat.</p>
+                <ul class="feat-list">
+                    <li>Real-time anomaly detection with instant alerts</li>
+                    <li>Automated weekly and monthly AI reports</li>
+                    <li>Smart goal tracking with auto-adjustments</li>
+                    <li>Slack, email, and webhook notification system</li>
+                    <li>One-click action recommendations</li>
+                </ul>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+                    <span class="badge">24/7 Monitoring</span>
+                    <span class="badge">Auto Alerts</span>
+                    <span class="badge">Smart Reports</span>
+                </div>
+            </div>
+            <div class="feat-vis reveal rd1">
+                <div class="feat-vis-top">
+                    <div style="display:flex;gap:6px;"><div style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></div><div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div><div style="width:10px;height:10px;border-radius:50%;background:#10b981;"></div></div>
+                    <span style="font-size:13px;color:var(--t2);font-weight:500;">AI Alert Center</span>
+                </div>
+                <div class="feat-vis-body">
+                    <div style="display:flex;flex-direction:column;gap:8px;">
+                        <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:12px;display:flex;gap:10px;align-items:flex-start;"><div style="width:28px;height:28px;border-radius:8px;background:rgba(16,185,129,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;">✅</div><div><div style="font-size:12px;font-weight:700;color:#10b981;">Revenue Milestone Hit</div><div style="font-size:11px;color:var(--t2);margin-top:2px;">$250K MRR achieved 3 days early. +18% above forecast.</div></div></div>
+                        <div style="background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.2);border-radius:10px;padding:12px;display:flex;gap:10px;align-items:flex-start;"><div style="width:28px;height:28px;border-radius:8px;background:rgba(234,179,8,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;">⚠️</div><div><div style="font-size:12px;font-weight:700;color:#eab308;">Ad Spend Inefficiency Detected</div><div style="font-size:11px;color:var(--t2);margin-top:2px;">Facebook Ads CPA is 3.2x Google Ads. Reallocate $4,000/mo.</div></div></div>
+                        <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:12px;display:flex;gap:10px;align-items:flex-start;"><div style="width:28px;height:28px;border-radius:8px;background:rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;">🔴</div><div><div style="font-size:12px;font-weight:700;color:#ef4444;">Churn Spike Alert</div><div style="font-size:11px;color:var(--t2);margin-top:2px;">Churn rate up 2.1% in 48h. 156 users match exit pattern. Act now.</div></div></div>
+                        <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:12px;display:flex;gap:10px;align-items:flex-start;"><div style="width:28px;height:28px;border-radius:8px;background:rgba(139,92,246,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;">💡</div><div><div style="font-size:12px;font-weight:700;color:#8b5cf6;">Growth Opportunity</div><div style="font-size:11px;color:var(--t2);margin-top:2px;">SEO opportunity in "enterprise analytics" — low competition, high volume.</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section class="section s2 int-section">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="badge">Integrations</div>
+            <h2 class="gt">Connect Everything You Use</h2>
+            <p>100+ native integrations. No engineering team required.</p>
+        </div>
+        <div class="int-grid reveal rd1" id="int-grid"></div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="aurora section">
+    <div class="aurora-in"><div class="aw aw1"></div><div class="aw aw2"></div><div class="aw aw3"></div></div>
+    <div class="container" style="text-align:center;position:relative;z-index:2;">
+        <div class="reveal">
+            <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:16px;color:var(--t1);">Ready to See It <span class="gt">In Action?</span></h2>
+            <p style="font-size:18px;color:var(--t2);margin-bottom:40px;">Start your free 14-day trial. No credit card required.</p>
+            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+                <button class="btn-p" style="padding:18px 40px;border-radius:14px;font-size:17px;" onclick="openDemo()"><span>Start Free Trial</span></button>
+                <a href="pricing.html"><button class="btn-g" style="padding:18px 40px;border-radius:14px;font-size:17px;">View Pricing</button></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" style="display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:900;"><span>📊</span><span class="gt">Growbrow.ai</span></a><p>The AI brain behind every growth decision.</p></div>
+        <div class="footer-col"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="index.html">Demo</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul><li><a href="#">Docs</a></li><li><a href="#">API</a></li><li><a href="contact.html">Support</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Growbrow.ai. All rights reserved.</p></div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="demo-modal" style="display:none;">
+    <div class="modal-box">
+        <button onclick="closeDemo()" style="position:absolute;top:16px;right:16px;background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px;cursor:pointer;color:var(--t2);"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+        <h3 class="gt" style="font-size:26px;font-weight:900;margin-bottom:8px;">Start Free Trial</h3>
+        <p style="font-size:14px;color:var(--t2);margin-bottom:20px;">No credit card required. Instant access to all features.</p>
+        <div id="modal-form"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@company.com" id="demo-email" style="margin-bottom:12px;"><button class="btn-p" style="width:100%;padding:14px;border-radius:12px;font-size:15px;justify-content:center;" onclick="submitDemo()"><span>Start Free Trial →</span></button></div>
+        <div id="modal-success" style="display:none;text-align:center;padding:20px 0;"><div style="width:60px;height:60px;border-radius:50%;background:rgba(16,185,129,.14);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;"><i data-lucide="check" style="width:32px;height:32px;color:#10b981;"></i></div><h3 style="font-size:22px;font-weight:900;color:var(--t1);margin-bottom:8px;">Welcome! 🎉</h3><p style="color:var(--t2);">Check your email for credentials.</p></div>
+    </div>
+</div>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.body.className = 'theme-' + savedTheme;
+document.getElementById('tog').addEventListener('click', () => { const t = document.body.className.includes('dark') ? 'light' : 'dark'; document.body.className = 'theme-' + t; localStorage.setItem('theme', t); });
+const cg = document.getElementById('cg'); document.addEventListener('mousemove', e => { cg.style.left = e.clientX+'px'; cg.style.top = e.clientY+'px'; });
+const nav = document.getElementById('nav'); window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+document.getElementById('mob-btn').addEventListener('click', () => document.getElementById('mob-menu').classList.toggle('open'));
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }), { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+function openDemo() { document.getElementById('demo-modal').style.display='flex'; lucide.createIcons(); }
+function closeDemo() { document.getElementById('demo-modal').style.display='none'; }
+function submitDemo() { const e=document.getElementById('demo-email').value; if(!e)return; document.getElementById('modal-form').style.display='none'; document.getElementById('modal-success').style.display='block'; lucide.createIcons(); setTimeout(closeDemo,2500); }
+document.getElementById('demo-modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeDemo(); });
+
+/* Tab clicks */
+document.querySelectorAll('.feat-tab').forEach(t => t.addEventListener('click', function(){ document.querySelectorAll('.feat-tab').forEach(x=>x.classList.remove('on')); this.classList.add('on'); }));
+
+/* Integrations */
+const integrations = [
+    {name:'Google Analytics',icon:'📊',bg:'#ea4335'},{name:'Shopify',icon:'🛍️',bg:'#96bf48'},{name:'HubSpot',icon:'🧡',bg:'#ff7a59'},
+    {name:'Salesforce',icon:'☁️',bg:'#00a1e0'},{name:'Stripe',icon:'💳',bg:'#635bff'},{name:'Slack',icon:'💬',bg:'#4a154b'},
+    {name:'Mailchimp',icon:'📧',bg:'#ffe01b'},{name:'Intercom',icon:'💭',bg:'#1f8ded'},{name:'Segment',icon:'🔷',bg:'#52bd95'},
+    {name:'Mixpanel',icon:'📈',bg:'#7856ff'},{name:'Amplitude',icon:'📉',bg:'#1773eb'},{name:'BigQuery',icon:'🗄️',bg:'#4285f4'},
+    {name:'Snowflake',icon:'❄️',bg:'#29b5e8'},{name:'Notion',icon:'📝',bg:'#000000'},{name:'Zapier',icon:'⚡',bg:'#ff4a00'},
+    {name:'Webflow',icon:'🌐',bg:'#4353ff'},{name:'WooCommerce',icon:'🛒',bg:'#7f54b3'},{name:'Klaviyo',icon:'📨',bg:'#ff9900'},
+    {name:'Facebook Ads',icon:'📣',bg:'#1877f2'},{name:'Google Ads',icon:'🎯',bg:'#4285f4'},{name:'TikTok Ads',icon:'🎵',bg:'#000000'},
+    {name:'Twilio',icon:'📱',bg:'#f22f46'},{name:'Zendesk',icon:'🎫',bg:'#03363d'},{name:'PostgreSQL',icon:'🐘',bg:'#336791'},
+];
+const ig = document.getElementById('int-grid');
+ig.innerHTML = integrations.map(i => `<div class="int-card"><div style="width:38px;height:38px;border-radius:10px;background:${i.bg}22;display:flex;align-items:center;justify-content:center;font-size:20px;">${i.icon}</div><div style="font-size:11px;font-weight:600;color:var(--t2);text-align:center;line-height:1.3;">${i.name}</div></div>`).join('');
+
+lucide.createIcons();
+</script>
+</body>
+</html>

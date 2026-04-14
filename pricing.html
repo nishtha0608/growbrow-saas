@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — Growbrow.ai</title>
+    <meta name="description" content="Simple, transparent pricing. Start free. Scale as you grow. No hidden fees.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📊</text></svg>">
+    <link rel="stylesheet" href="shared.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .price-hero{padding:140px 24px 60px;text-align:center;position:relative;}
+        .price-toggle{display:inline-flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--bd);border-radius:50px;padding:6px 6px 6px 16px;margin-bottom:56px;}
+        .price-toggle span{font-size:14px;font-weight:600;color:var(--t2);}
+        .toggle-pill{width:44px;height:24px;background:linear-gradient(135deg,var(--v),var(--p));border-radius:50px;position:relative;cursor:pointer;transition:all .3s;}
+        .toggle-pill::after{content:'';width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;top:3px;left:3px;transition:transform .3s;}
+        .toggle-pill.annual::after{transform:translateX(20px);}
+        .save-badge{background:rgba(16,185,129,.15);color:#10b981;border:1px solid rgba(16,185,129,.3);border-radius:50px;font-size:11px;font-weight:700;padding:4px 10px;}
+        .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto;}
+        @media(max-width:900px){.plans-grid{grid-template-columns:1fr;max-width:500px;}}
+        .plan-card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:32px;position:relative;transition:all .35s;}
+        .plan-card:hover{border-color:var(--bda);box-shadow:var(--glow);transform:translateY(-6px);}
+        .plan-popular{position:relative;}
+        .plan-popular::before{content:'';position:absolute;inset:-2px;border-radius:22px;background:linear-gradient(135deg,var(--v2),var(--p2),var(--c2),var(--v2));background-size:300% 300%;z-index:-1;animation:gsp 5s linear infinite;}
+        @keyframes gsp{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+        .plan-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);margin-bottom:8px;}
+        .plan-price{font-size:52px;font-weight:900;line-height:1;margin-bottom:4px;}
+        .plan-period{font-size:14px;color:var(--t3);}
+        .plan-desc{font-size:14px;color:var(--t2);margin:12px 0 24px;line-height:1.6;}
+        .plan-divider{height:1px;background:var(--bd);margin:24px 0;}
+        .plan-feature{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--t2);margin-bottom:10px;}
+        .chk{color:#10b981;flex-shrink:0;font-weight:800;font-size:13px;margin-top:1px;}
+        .comp-wrap{max-width:900px;margin:0 auto;background:var(--card);border:1px solid var(--bd);border-radius:20px;overflow:hidden;}
+        .faq-grid{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
+    </style>
+</head>
+<body>
+<div id="cg"></div>
+<div class="mesh-bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+
+<!-- NAV -->
+<nav class="site-nav" id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo"><span>📊</span><span class="gt">Growbrow.ai</span></a>
+        <div class="nav-links">
+            <a href="index.html"    class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="pricing.html"  class="nav-link active">Pricing</a>
+            <a href="about.html"    class="nav-link">About</a>
+            <a href="contact.html"  class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="tog" id="tog"><div class="tog-icons"><span>☀️</span><span>🌙</span></div><div class="tog-thumb"></div></button>
+            <button class="nav-ghost" onclick="openDemo()">Login</button>
+            <button class="nav-cta" onclick="openDemo()"><span>Start Free Trial</span></button>
+            <button class="mob-menu-btn" id="mob-btn"><i data-lucide="menu" style="width:20px;height:20px;"></i></button>
+        </div>
+    </div>
+    <div class="mob-menu" id="mob-menu">
+        <a href="index.html" class="mob-link">Home</a>
+        <a href="features.html" class="mob-link">Features</a>
+        <a href="pricing.html" class="mob-link active">Pricing</a>
+        <a href="about.html" class="mob-link">About</a>
+        <a href="contact.html" class="mob-link">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="price-hero s1">
+    <div class="grid-bg"></div>
+    <div style="position:relative;z-index:1;">
+        <div class="hero-badge slide-in" style="margin-bottom:20px;"><div class="pd"></div>Transparent Pricing</div>
+        <h1 class="slide-in" style="font-size:clamp(2.5rem,4.5vw,3.5rem);font-weight:900;margin-bottom:16px;">Start Free. <span class="gt">Scale as You Grow.</span></h1>
+        <p class="slide-in" style="font-size:18px;color:var(--t2);max-width:540px;margin:0 auto 32px;">No hidden fees. No surprise invoices. Cancel anytime.</p>
+        <!-- Toggle -->
+        <div class="price-toggle slide-in">
+            <span id="lbl-m" style="color:var(--t1);">Monthly</span>
+            <div class="toggle-pill" id="billing-tog"></div>
+            <span id="lbl-a">Annual</span>
+            <span class="save-badge">Save 20%</span>
+        </div>
+    </div>
+</section>
+
+<!-- PLANS -->
+<section class="section s1" style="padding-top:0;">
+    <div class="container">
+        <div class="plans-grid">
+
+            <!-- STARTER -->
+            <div class="plan-card reveal rd1">
+                <div class="plan-name">Starter</div>
+                <div class="plan-price gt" id="p-starter">$49</div>
+                <div class="plan-period">per month, billed <span id="b-starter">monthly</span></div>
+                <div class="plan-desc">Perfect for early-stage businesses starting with data-driven growth.</div>
+                <button class="btn-g" style="width:100%;padding:14px;border-radius:12px;font-size:15px;justify-content:center;" onclick="openDemo()">Get Started</button>
+                <div class="plan-divider"></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Up to <strong style="color:var(--t1);">10,000</strong> data points/mo</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Basic AI analytics dashboard</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Up to <strong style="color:var(--t1);">5</strong> team members</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>30-day revenue forecasting</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Email alerts and reports</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>10 native integrations</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Mobile app access</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Email support (48h SLA)</span></div>
+            </div>
+
+            <!-- PROFESSIONAL -->
+            <div class="plan-card plan-popular reveal rd2">
+                <div class="badge" style="margin-bottom:16px;">Most Popular</div>
+                <div class="plan-name">Professional</div>
+                <div class="plan-price gt" id="p-pro">$149</div>
+                <div class="plan-period">per month, billed <span id="b-pro">monthly</span></div>
+                <div class="plan-desc">For growing teams that need serious AI power and automation.</div>
+                <button class="btn-p" style="width:100%;padding:14px;border-radius:12px;font-size:15px;justify-content:center;" onclick="openDemo()"><span>Get Started</span></button>
+                <div class="plan-divider"></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Up to <strong style="color:var(--t1);">100,000</strong> data points/mo</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Advanced AI predictions + NLP</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span><strong style="color:var(--t1);">Unlimited</strong> team members</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>90-day forecasting + churn AI</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Customer intelligence + segments</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>50+ native integrations</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Full API access + webhooks</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Priority support (4h SLA)</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Custom dashboards + reports</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Slack + email notifications</span></div>
+            </div>
+
+            <!-- ENTERPRISE -->
+            <div class="plan-card reveal rd3">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-price gt">Custom</div>
+                <div class="plan-period">tailored to your scale</div>
+                <div class="plan-desc">For large teams and companies with custom data and compliance needs.</div>
+                <button class="btn-g" style="width:100%;padding:14px;border-radius:12px;font-size:15px;justify-content:center;" onclick="openDemo()">Talk to Sales</button>
+                <div class="plan-divider"></div>
+                <div class="plan-feature"><span class="chk">✓</span><span><strong style="color:var(--t1);">Unlimited</strong> data points</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Custom AI models on your data</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Dedicated account manager</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>24/7 phone + dedicated Slack</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>On-premise deployment option</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>100+ integrations + custom</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>SAML SSO + role-based access</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>SLA guarantee (99.9% uptime)</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>HIPAA & SOC 2 compliance</span></div>
+                <div class="plan-feature"><span class="chk">✓</span><span>Custom contract + invoicing</span></div>
+            </div>
+        </div>
+
+        <!-- TRUST LINE -->
+        <div style="text-align:center;margin-top:40px;display:flex;flex-wrap:wrap;justify-content:center;gap:24px;">
+            <span style="font-size:13px;color:var(--t3);display:flex;align-items:center;gap:6px;"><i data-lucide="shield-check" style="width:15px;height:15px;color:#10b981;"></i>SOC 2 Certified</span>
+            <span style="font-size:13px;color:var(--t3);display:flex;align-items:center;gap:6px;"><i data-lucide="lock" style="width:15px;height:15px;color:#10b981;"></i>Bank-level Encryption</span>
+            <span style="font-size:13px;color:var(--t3);display:flex;align-items:center;gap:6px;"><i data-lucide="credit-card" style="width:15px;height:15px;color:#10b981;"></i>No Credit Card for Trial</span>
+            <span style="font-size:13px;color:var(--t3);display:flex;align-items:center;gap:6px;"><i data-lucide="x-circle" style="width:15px;height:15px;color:#10b981;"></i>Cancel Anytime</span>
+        </div>
+    </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="section s2">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="badge">Compare Plans</div>
+            <h2 class="gt">Feature Comparison</h2>
+            <p>Everything you need to choose the right plan</p>
+        </div>
+        <div class="comp-wrap reveal">
+            <table class="comp-table" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th style="width:40%;">Feature</th>
+                        <th style="text-align:center;">Starter</th>
+                        <th style="text-align:center;background:rgba(139,92,246,.06);">Professional</th>
+                        <th style="text-align:center;">Enterprise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="4" style="padding:12px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);background:var(--bg2);">Analytics</td></tr>
+                    <tr><td>Data Points / month</td><td style="text-align:center;">10,000</td><td style="text-align:center;background:rgba(139,92,246,.04);">100,000</td><td style="text-align:center;">Unlimited</td></tr>
+                    <tr><td>AI Analytics Dashboard</td><td style="text-align:center;" class="check">✓</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="check">✓</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td>Real-time Data Processing</td><td style="text-align:center;" class="cross">✗</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="check">✓</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td>Natural Language Queries</td><td style="text-align:center;" class="cross">✗</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="check">✓</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td colspan="4" style="padding:12px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);background:var(--bg2);">AI & Predictions</td></tr>
+                    <tr><td>Revenue Forecasting</td><td style="text-align:center;">30-day</td><td style="text-align:center;background:rgba(139,92,246,.04);">90-day</td><td style="text-align:center;">Custom</td></tr>
+                    <tr><td>Churn Prediction</td><td style="text-align:center;" class="cross">✗</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="check">✓</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td>Customer Segmentation AI</td><td style="text-align:center;">Basic</td><td style="text-align:center;background:rgba(139,92,246,.04);">Advanced</td><td style="text-align:center;">Custom Models</td></tr>
+                    <tr><td>Custom AI Models</td><td style="text-align:center;" class="cross">✗</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="cross">✗</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td colspan="4" style="padding:12px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);background:var(--bg2);">Integrations & API</td></tr>
+                    <tr><td>Native Integrations</td><td style="text-align:center;">10</td><td style="text-align:center;background:rgba(139,92,246,.04);">50+</td><td style="text-align:center;">100+ + Custom</td></tr>
+                    <tr><td>REST API Access</td><td style="text-align:center;" class="cross">✗</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="check">✓</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td>Webhooks</td><td style="text-align:center;" class="cross">✗</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="check">✓</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td colspan="4" style="padding:12px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);background:var(--bg2);">Security & Compliance</td></tr>
+                    <tr><td>SSO / SAML</td><td style="text-align:center;" class="cross">✗</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="cross">✗</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td>SOC 2 Type II</td><td style="text-align:center;" class="check">✓</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="check">✓</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td>HIPAA Compliance</td><td style="text-align:center;" class="cross">✗</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="cross">✗</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td>On-Premise Deployment</td><td style="text-align:center;" class="cross">✗</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="cross">✗</td><td style="text-align:center;" class="check">✓</td></tr>
+                    <tr><td colspan="4" style="padding:12px 20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);background:var(--bg2);">Support</td></tr>
+                    <tr><td>Support SLA</td><td style="text-align:center;">48h email</td><td style="text-align:center;background:rgba(139,92,246,.04);">4h priority</td><td style="text-align:center;">24/7 dedicated</td></tr>
+                    <tr><td>Dedicated Account Manager</td><td style="text-align:center;" class="cross">✗</td><td style="text-align:center;background:rgba(139,92,246,.04);" class="cross">✗</td><td style="text-align:center;" class="check">✓</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section s1">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="badge">FAQ</div>
+            <h2 class="gt">Frequently Asked Questions</h2>
+            <p>Still have questions? <a href="contact.html" style="color:var(--v2);">Talk to us →</a></p>
+        </div>
+        <div class="faq-grid" id="faq-grid"></div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="aurora section">
+    <div class="aurora-in"><div class="aw aw1"></div><div class="aw aw2"></div><div class="aw aw3"></div></div>
+    <div class="container" style="text-align:center;position:relative;z-index:2;">
+        <div class="reveal">
+            <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:16px;color:var(--t1);">Still Unsure? <span class="gt">Try It Free.</span></h2>
+            <p style="font-size:18px;color:var(--t2);margin-bottom:40px;">14-day free trial. No credit card. Cancel anytime. Full access to Professional plan.</p>
+            <button class="btn-p" style="padding:18px 48px;border-radius:14px;font-size:17px;" onclick="openDemo()"><span>Start Free Trial →</span></button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" style="display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:900;"><span>📊</span><span class="gt">Growbrow.ai</span></a><p>The AI brain behind every growth decision.</p></div>
+        <div class="footer-col"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="index.html">Demo</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul><li><a href="#">Docs</a></li><li><a href="#">API</a></li><li><a href="contact.html">Support</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Growbrow.ai. All rights reserved.</p></div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="demo-modal" style="display:none;">
+    <div class="modal-box">
+        <button onclick="closeDemo()" style="position:absolute;top:16px;right:16px;background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px;cursor:pointer;color:var(--t2);"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+        <h3 class="gt" style="font-size:26px;font-weight:900;margin-bottom:8px;">Start Free Trial</h3>
+        <p style="font-size:14px;color:var(--t2);margin-bottom:20px;">No credit card required. Full Professional access for 14 days.</p>
+        <div id="modal-form"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@company.com" id="demo-email" style="margin-bottom:12px;"><button class="btn-p" style="width:100%;padding:14px;border-radius:12px;font-size:15px;justify-content:center;" onclick="submitDemo()"><span>Start Free Trial →</span></button></div>
+        <div id="modal-success" style="display:none;text-align:center;padding:20px 0;"><div style="width:60px;height:60px;border-radius:50%;background:rgba(16,185,129,.14);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;"><i data-lucide="check" style="width:32px;height:32px;color:#10b981;"></i></div><h3 style="font-size:22px;font-weight:900;color:var(--t1);margin-bottom:8px;">You're in! 🎉</h3><p style="color:var(--t2);">Check your email for access details.</p></div>
+    </div>
+</div>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.body.className = 'theme-' + savedTheme;
+document.getElementById('tog').addEventListener('click', () => { const t = document.body.className.includes('dark') ? 'light' : 'dark'; document.body.className = 'theme-' + t; localStorage.setItem('theme', t); });
+const cg = document.getElementById('cg'); document.addEventListener('mousemove', e => { cg.style.left = e.clientX+'px'; cg.style.top = e.clientY+'px'; });
+const nav = document.getElementById('nav'); window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+document.getElementById('mob-btn').addEventListener('click', () => document.getElementById('mob-menu').classList.toggle('open'));
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }), { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* Billing toggle */
+let annual = false;
+const prices = { starter: [49, 39], pro: [149, 119] };
+document.getElementById('billing-tog').addEventListener('click', function() {
+    annual = !annual;
+    this.classList.toggle('annual', annual);
+    document.getElementById('lbl-m').style.color = annual ? 'var(--t2)' : 'var(--t1)';
+    document.getElementById('lbl-a').style.color = annual ? 'var(--t1)' : 'var(--t2)';
+    document.getElementById('p-starter').textContent = '$' + prices.starter[annual ? 1 : 0];
+    document.getElementById('p-pro').textContent = '$' + prices.pro[annual ? 1 : 0];
+    document.getElementById('b-starter').textContent = annual ? 'annually' : 'monthly';
+    document.getElementById('b-pro').textContent = annual ? 'annually' : 'monthly';
+});
+
+/* FAQ */
+const faqs = [
+    { q: 'Is there a free trial?', a: 'Yes! Every plan starts with a 14-day free trial with full Professional access. No credit card required.' },
+    { q: 'Can I change plans later?', a: 'Absolutely. You can upgrade or downgrade at any time. Upgrades take effect immediately, downgrades at the end of your billing cycle.' },
+    { q: 'What counts as a "data point"?', a: 'A data point is any single tracked event — a page view, transaction, user action, or API call. Most small businesses use under 10K/month.' },
+    { q: 'Do you offer discounts for startups or nonprofits?', a: 'Yes. We offer 50% off for qualifying startups (under 2 years old, under $1M revenue) and nonprofits. Contact us to apply.' },
+    { q: 'How does billing work?', a: 'We charge monthly or annually (20% discount). All plans are billed in USD. We accept all major credit cards and invoicing for Enterprise.' },
+    { q: 'Can I cancel anytime?', a: 'Yes, anytime. When you cancel, you keep access until the end of your paid period. No cancellation fees, ever.' },
+    { q: 'Is my data secure?', a: 'Yes. We are SOC 2 Type II certified, GDPR compliant, and use AES-256 encryption at rest and TLS 1.3 in transit.' },
+    { q: 'Do you offer onboarding support?', a: 'Every new account gets a guided onboarding session. Professional and Enterprise plans include dedicated onboarding specialists.' },
+];
+const fg = document.getElementById('faq-grid');
+fg.innerHTML = faqs.map((f, i) => `
+    <div class="faq-item" id="faq-${i}">
+        <div class="faq-q" onclick="toggleFaq(${i})">
+            <span>${f.q}</span>
+            <i data-lucide="plus" class="faq-icon" style="width:18px;height:18px;"></i>
+        </div>
+        <div class="faq-a" id="fa-${i}">${f.a}</div>
+    </div>`).join('');
+function toggleFaq(i) {
+    const item = document.getElementById('faq-' + i);
+    const ans  = document.getElementById('fa-' + i);
+    item.classList.toggle('open');
+    ans.classList.toggle('open');
+}
+
+function openDemo() { document.getElementById('demo-modal').style.display='flex'; lucide.createIcons(); }
+function closeDemo() { document.getElementById('demo-modal').style.display='none'; }
+function submitDemo() { const e=document.getElementById('demo-email').value; if(!e)return; document.getElementById('modal-form').style.display='none'; document.getElementById('modal-success').style.display='block'; lucide.createIcons(); setTimeout(closeDemo,2500); }
+document.getElementById('demo-modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeDemo(); });
+
+lucide.createIcons();
+</script>
+</body>
+</html>

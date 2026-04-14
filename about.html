@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Growbrow.ai</title>
+    <meta name="description" content="Learn about Growbrow.ai — our mission, team, and story of building the AI brain behind every growth decision.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📊</text></svg>">
+    <link rel="stylesheet" href="shared.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .about-hero{padding:140px 24px 80px;position:relative;}
+        .about-hero-inner{max-width:800px;margin:0 auto;text-align:center;}
+        .about-hero h1{font-size:clamp(2.5rem,4.5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:20px;}
+        .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+        @media(max-width:768px){.values-grid{grid-template-columns:1fr;}}
+        .val-card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:28px;transition:all .35s;}
+        .val-card:hover{border-color:var(--bda);box-shadow:var(--glow);transform:translateY(-5px);}
+        .val-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:24px;}
+        .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+        @media(max-width:768px){.team-grid{grid-template-columns:repeat(2,1fr);}}
+        @media(max-width:400px){.team-grid{grid-template-columns:1fr;}}
+        .team-card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:24px;text-align:center;transition:all .3s;}
+        .team-card:hover{border-color:var(--bda);transform:translateY(-4px);box-shadow:var(--glows);}
+        .team-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;}
+        .timeline{position:relative;padding-left:32px;}
+        .timeline::before{content:'';position:absolute;left:12px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--v2),var(--p2));}
+        .tl-item{position:relative;margin-bottom:40px;}
+        .tl-dot{position:absolute;left:-26px;top:6px;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--v2),var(--p2));border:2px solid var(--bg1);}
+        .tl-year{font-size:12px;font-weight:800;color:var(--v2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em;}
+        .tl-title{font-size:16px;font-weight:700;color:var(--t1);margin-bottom:6px;}
+        .tl-desc{font-size:14px;color:var(--t2);line-height:1.6;}
+        .press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+        @media(max-width:600px){.press-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+<div id="cg"></div>
+<div class="mesh-bg"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+
+<!-- NAV -->
+<nav class="site-nav" id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo"><span>📊</span><span class="gt">Growbrow.ai</span></a>
+        <div class="nav-links">
+            <a href="index.html"    class="nav-link">Home</a>
+            <a href="features.html" class="nav-link">Features</a>
+            <a href="pricing.html"  class="nav-link">Pricing</a>
+            <a href="about.html"    class="nav-link active">About</a>
+            <a href="contact.html"  class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="tog" id="tog"><div class="tog-icons"><span>☀️</span><span>🌙</span></div><div class="tog-thumb"></div></button>
+            <button class="nav-ghost" onclick="openDemo()">Login</button>
+            <button class="nav-cta" onclick="openDemo()"><span>Start Free Trial</span></button>
+            <button class="mob-menu-btn" id="mob-btn"><i data-lucide="menu" style="width:20px;height:20px;"></i></button>
+        </div>
+    </div>
+    <div class="mob-menu" id="mob-menu">
+        <a href="index.html" class="mob-link">Home</a>
+        <a href="features.html" class="mob-link">Features</a>
+        <a href="pricing.html" class="mob-link">Pricing</a>
+        <a href="about.html" class="mob-link active">About</a>
+        <a href="contact.html" class="mob-link">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero s1">
+    <div class="grid-bg"></div>
+    <div class="about-hero-inner slide-in" style="position:relative;z-index:1;">
+        <div class="hero-badge" style="margin-bottom:24px;"><div class="pd"></div>Our Story</div>
+        <h1>We're on a Mission to Make <span class="gt">Every Business Smarter</span></h1>
+        <p style="font-size:18px;color:var(--t2);line-height:1.7;margin-bottom:40px;">Growbrow.ai was founded on a simple belief: every business deserves access to the same data intelligence that Fortune 500 companies have. We're democratizing growth analytics with AI.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <button class="btn-p" style="padding:14px 32px;border-radius:12px;font-size:15px;" onclick="openDemo()"><span>Join Our Mission</span></button>
+            <a href="contact.html"><button class="btn-g" style="padding:14px 32px;border-radius:12px;font-size:15px;">Contact Us →</button></a>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="section s2" style="padding-top:0;">
+    <div class="container">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;" id="about-stats">
+            <div class="stat-card reveal rd1">
+                <div class="gt" style="font-size:2.75rem;font-weight:900;" id="as1">0</div>
+                <div style="font-weight:700;color:var(--t1);margin-bottom:4px;">Businesses Served</div>
+                <div style="font-size:13px;color:var(--t3);">and growing every day</div>
+            </div>
+            <div class="stat-card reveal rd2">
+                <div style="font-size:2.75rem;font-weight:900;color:#ec4899;" id="as2">0</div>
+                <div style="font-weight:700;color:var(--t1);margin-bottom:4px;">Team Members</div>
+                <div style="font-size:13px;color:var(--t3);">across 12 countries</div>
+            </div>
+            <div class="stat-card reveal rd3">
+                <div style="font-size:2.75rem;font-weight:900;color:#22d3ee;" id="as3">0</div>
+                <div style="font-weight:700;color:var(--t1);margin-bottom:4px;">Countries</div>
+                <div style="font-size:13px;color:var(--t3);">using Growbrow daily</div>
+            </div>
+            <div class="stat-card reveal rd4">
+                <div style="font-size:2.75rem;font-weight:900;color:#10b981;" id="as4">0B</div>
+                <div style="font-weight:700;color:var(--t1);margin-bottom:4px;">Data Points Analyzed</div>
+                <div style="font-size:13px;color:var(--t3);">every single month</div>
+            </div>
+        </div>
+        <style>@media(max-width:768px){#about-stats{grid-template-columns:1fr 1fr;}}</style>
+    </div>
+</section>
+
+<!-- MISSION -->
+<section class="section s1">
+    <div class="container">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;" id="mission-grid">
+            <div class="reveal">
+                <div class="badge" style="margin-bottom:16px;">Our Mission</div>
+                <h2 style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:900;margin-bottom:20px;color:var(--t1);">Democratize AI Growth Intelligence for <span class="gt">Every Business</span></h2>
+                <p style="font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:16px;">For too long, advanced data analytics was only available to companies with large data science teams and million-dollar budgets. We built Growbrow.ai to change that.</p>
+                <p style="font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:16px;">Today, a two-person startup can have the same AI growth intelligence as Amazon or Netflix. That's not just a feature — that's a fundamental shift in how businesses compete.</p>
+                <p style="font-size:15px;color:var(--t2);line-height:1.75;">We believe the next generation of category-defining companies will be built on AI-driven decisions, and we're building the platform that powers them.</p>
+            </div>
+            <div class="timeline reveal rd1">
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2021 — Founded</div>
+                    <div class="tl-title">The Idea Sparks</div>
+                    <div class="tl-desc">Founded after seeing too many great businesses fail not from bad products but from bad data decisions. We set out to fix that.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2022 — Product</div>
+                    <div class="tl-title">First AI Model Ships</div>
+                    <div class="tl-desc">Launched our first revenue prediction model. Early customers saw 2x improvement in forecast accuracy within 30 days.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2023 — Growth</div>
+                    <div class="tl-title">1,000 Businesses Onboarded</div>
+                    <div class="tl-desc">Crossed 1,000 paying customers. Launched customer intelligence, churn prediction, and the automated insight engine.</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2024 — Scale</div>
+                    <div class="tl-title">10,000+ Businesses & Growing</div>
+                    <div class="tl-desc">Processing over 5 billion data points monthly. Expanded to 47 countries. Launched GPT-4o powered natural language analytics.</div>
+                </div>
+            </div>
+        </div>
+        <style>@media(max-width:900px){#mission-grid{grid-template-columns:1fr;}}</style>
+    </div>
+</section>
+
+<!-- VALUES -->
+<section class="section s2">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="badge">Our Values</div>
+            <h2 class="gt">What We Stand For</h2>
+            <p>The principles that guide every decision we make</p>
+        </div>
+        <div class="values-grid">
+            <div class="val-card reveal rd1">
+                <div class="val-icon" style="background:rgba(139,92,246,.12);">🎯</div>
+                <h3 style="font-size:18px;font-weight:800;margin-bottom:10px;color:var(--t1);">Outcomes Over Features</h3>
+                <p style="font-size:14px;color:var(--t2);line-height:1.7;">We don't ship features for the sake of it. Every product decision starts with "does this make our customers grow faster?"</p>
+            </div>
+            <div class="val-card reveal rd2">
+                <div class="val-icon" style="background:rgba(236,72,153,.12);">🔍</div>
+                <h3 style="font-size:18px;font-weight:800;margin-bottom:10px;color:var(--t1);">Radical Transparency</h3>
+                <p style="font-size:14px;color:var(--t2);line-height:1.7;">We show our AI's confidence levels, explain every recommendation, and never hide uncertainty behind false precision.</p>
+            </div>
+            <div class="val-card reveal rd3">
+                <div class="val-icon" style="background:rgba(34,211,238,.12);">⚡</div>
+                <h3 style="font-size:18px;font-weight:800;margin-bottom:10px;color:var(--t1);">Speed is a Feature</h3>
+                <p style="font-size:14px;color:var(--t2);line-height:1.7;">In business, timing is everything. We obsess over latency, freshness, and delivery speed — because slow insights are useless insights.</p>
+            </div>
+            <div class="val-card reveal rd1">
+                <div class="val-icon" style="background:rgba(16,185,129,.12);">🌍</div>
+                <h3 style="font-size:18px;font-weight:800;margin-bottom:10px;color:var(--t1);">Democratize Intelligence</h3>
+                <p style="font-size:14px;color:var(--t2);line-height:1.7;">A two-person startup should have the same AI power as a Fortune 500 company. We're leveling the playing field.</p>
+            </div>
+            <div class="val-card reveal rd2">
+                <div class="val-icon" style="background:rgba(245,158,11,.12);">🔒</div>
+                <h3 style="font-size:18px;font-weight:800;margin-bottom:10px;color:var(--t1);">Privacy by Design</h3>
+                <p style="font-size:14px;color:var(--t2);line-height:1.7;">Your data is your competitive advantage. We never sell it, share it, or train public models on it. Your insights stay yours.</p>
+            </div>
+            <div class="val-card reveal rd3">
+                <div class="val-icon" style="background:rgba(99,102,241,.12);">🤝</div>
+                <h3 style="font-size:18px;font-weight:800;margin-bottom:10px;color:var(--t1);">Customer Obsession</h3>
+                <p style="font-size:14px;color:var(--t2);line-height:1.7;">Our success is measured by yours. Every roadmap decision, every support ticket, every line of code — driven by your growth.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section class="section s1">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="badge">Team</div>
+            <h2 class="gt">Built by Experts</h2>
+            <p>Ex-Google, Meta, Stripe, and McKinsey — united by one mission</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card reveal rd1">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9);">A</div>
+                <div style="font-weight:800;font-size:15px;color:var(--t1);">Arjun Mehta</div>
+                <div style="font-size:12px;color:var(--v2);font-weight:600;margin:4px 0;">CEO & Co-founder</div>
+                <div style="font-size:12px;color:var(--t3);">Ex-Google Analytics, Stanford MBA</div>
+            </div>
+            <div class="team-card reveal rd2">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#ec4899,#db2777);">S</div>
+                <div style="font-weight:800;font-size:15px;color:var(--t1);">Sneha Patel</div>
+                <div style="font-size:12px;color:var(--p2);font-weight:600;margin:4px 0;">CTO & Co-founder</div>
+                <div style="font-size:12px;color:var(--t3);">Ex-Meta AI, MIT CS PhD</div>
+            </div>
+            <div class="team-card reveal rd3">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#22d3ee,#0891b2);">R</div>
+                <div style="font-weight:800;font-size:15px;color:var(--t1);">Rohan Verma</div>
+                <div style="font-size:12px;color:var(--c2);font-weight:600;margin:4px 0;">Head of Product</div>
+                <div style="font-size:12px;color:var(--t3);">Ex-Stripe, IIT Delhi</div>
+            </div>
+            <div class="team-card reveal rd4">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#10b981,#059669);">P</div>
+                <div style="font-weight:800;font-size:15px;color:var(--t1);">Priya Sharma</div>
+                <div style="font-size:12px;color:#10b981;font-weight:600;margin:4px 0;">Head of Growth</div>
+                <div style="font-size:12px;color:var(--t3);">Ex-McKinsey, HBS</div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:40px;">
+            <p style="font-size:15px;color:var(--t2);margin-bottom:16px;">We're hiring across all roles.</p>
+            <a href="contact.html"><button class="btn-p" style="padding:12px 28px;border-radius:10px;font-size:14px;"><span>View Open Roles →</span></button></a>
+        </div>
+    </div>
+</section>
+
+<!-- PRESS -->
+<section class="section s2">
+    <div class="container">
+        <div class="section-label reveal">
+            <div class="badge">Press</div>
+            <h2 class="gt">In The News</h2>
+            <p>What the world is saying about Growbrow.ai</p>
+        </div>
+        <div class="press-grid">
+            <div class="card" style="border-radius:16px;padding:24px;" >
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:12px;">TechCrunch</div>
+                <p style="font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:12px;">"Growbrow.ai is building the analytics stack that every startup wishes they had from day one."</p>
+                <div style="font-size:12px;color:var(--t3);">March 2024</div>
+            </div>
+            <div class="card" style="border-radius:16px;padding:24px;">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:12px;">Forbes</div>
+                <p style="font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:12px;">"One of the most impressive AI products we've seen — it actually tells you what to do, not just what happened."</p>
+                <div style="font-size:12px;color:var(--t3);">February 2024</div>
+            </div>
+            <div class="card" style="border-radius:16px;padding:24px;">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:12px;">Product Hunt</div>
+                <p style="font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:12px;">"#1 Product of the Day. Growbrow gives you the analytics brain you always wanted but could never afford."</p>
+                <div style="font-size:12px;color:var(--t3);">January 2024</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="aurora section">
+    <div class="aurora-in"><div class="aw aw1"></div><div class="aw aw2"></div><div class="aw aw3"></div></div>
+    <div class="container" style="text-align:center;position:relative;z-index:2;">
+        <div class="reveal">
+            <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:16px;color:var(--t1);">Be Part of the <span class="gt">Growth Revolution</span></h2>
+            <p style="font-size:18px;color:var(--t2);margin-bottom:40px;">Join 10,000+ businesses already growing smarter with AI.</p>
+            <button class="btn-p" style="padding:18px 48px;border-radius:14px;font-size:17px;" onclick="openDemo()"><span>Start Free Today →</span></button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" style="display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:900;"><span>📊</span><span class="gt">Growbrow.ai</span></a><p>The AI brain behind every growth decision.</p></div>
+        <div class="footer-col"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="index.html">Demo</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul><li><a href="#">Docs</a></li><li><a href="#">API</a></li><li><a href="contact.html">Support</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Growbrow.ai. All rights reserved.</p></div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="demo-modal" style="display:none;">
+    <div class="modal-box">
+        <button onclick="closeDemo()" style="position:absolute;top:16px;right:16px;background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px;cursor:pointer;color:var(--t2);"><i data-lucide="x" style="width:16px;height:16px;"></i></button>
+        <h3 class="gt" style="font-size:26px;font-weight:900;margin-bottom:8px;">Start Free Trial</h3>
+        <p style="font-size:14px;color:var(--t2);margin-bottom:20px;">No credit card required. Full access for 14 days.</p>
+        <div id="modal-form"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="you@company.com" id="demo-email" style="margin-bottom:12px;"><button class="btn-p" style="width:100%;padding:14px;border-radius:12px;font-size:15px;justify-content:center;" onclick="submitDemo()"><span>Start Free Trial →</span></button></div>
+        <div id="modal-success" style="display:none;text-align:center;padding:20px 0;"><div style="width:60px;height:60px;border-radius:50%;background:rgba(16,185,129,.14);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;"><i data-lucide="check" style="width:32px;height:32px;color:#10b981;"></i></div><h3 style="font-size:22px;font-weight:900;color:var(--t1);margin-bottom:8px;">Welcome! 🎉</h3><p style="color:var(--t2);">Check your email for access details.</p></div>
+    </div>
+</div>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.body.className = 'theme-' + savedTheme;
+document.getElementById('tog').addEventListener('click', () => { const t = document.body.className.includes('dark') ? 'light' : 'dark'; document.body.className = 'theme-' + t; localStorage.setItem('theme', t); });
+const cg = document.getElementById('cg'); document.addEventListener('mousemove', e => { cg.style.left = e.clientX+'px'; cg.style.top = e.clientY+'px'; });
+const nav = document.getElementById('nav'); window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+document.getElementById('mob-btn').addEventListener('click', () => document.getElementById('mob-menu').classList.toggle('open'));
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }), { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function animateCounter(el, target, suffix = '', prefix = '') {
+    const duration = 2000; let start = null;
+    const step = ts => { if (!start) start = ts; const p = Math.min((ts-start)/duration,1); const v = Math.floor((1-Math.pow(1-p,3))*target); el.textContent = prefix + (target>=1000?v.toLocaleString():v) + suffix; if (p<1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+}
+const sobs = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) {
+        animateCounter(document.getElementById('as1'), 10000, '+');
+        animateCounter(document.getElementById('as2'), 48, '+');
+        animateCounter(document.getElementById('as3'), 47, '');
+        document.getElementById('as4').textContent = '5B+';
+        sobs.disconnect();
+    }
+}, { threshold: 0.3 });
+const sg = document.getElementById('about-stats'); if (sg) sobs.observe(sg);
+
+function openDemo() { document.getElementById('demo-modal').style.display='flex'; lucide.createIcons(); }
+function closeDemo() { document.getElementById('demo-modal').style.display='none'; }
+function submitDemo() { const e=document.getElementById('demo-email').value; if(!e)return; document.getElementById('modal-form').style.display='none'; document.getElementById('modal-success').style.display='block'; lucide.createIcons(); setTimeout(closeDemo,2500); }
+document.getElementById('demo-modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeDemo(); });
+lucide.createIcons();
+</script>
+</body>
+</html>
